@@ -95,7 +95,7 @@ export default function LandingPage() {
             { step: 5, title: "Save & Share", desc: "Stop recording and export your perfectly framed video." }
           ].map((item) => (
             <div key={item.step} className="flex mb-8 items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#59E46E] rounded-full flex items-center justify-center text-gray-900 font-bold text-xl mr-6">
+              <div className="shrink-0 w-12 h-12 bg-[#59E46E] rounded-full flex items-center justify-center text-gray-900 font-bold text-xl mr-6">
                 {item.step}
               </div>
               <div>
