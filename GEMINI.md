@@ -23,30 +23,39 @@
 This project uses `bun` for dependency management and script execution.
 
 ### Install Dependencies
+
 ```bash
 bun install
 ```
 
 ### Development Server
+
 Start the dev server with Hot Module Replacement (HMR):
+
 ```bash
 bun run dev
 ```
 
 ### Production Build
+
 Build the application for production (outputs to `dist/`):
+
 ```bash
 bun run build
 ```
 
 ### Preview Build
+
 Preview the production build locally:
+
 ```bash
 bun run preview
 ```
 
 ### Linting
+
 Run ESLint to check for code quality issues:
+
 ```bash
 bun run lint
 ```
