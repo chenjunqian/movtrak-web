@@ -6,7 +6,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-gray-900 text-white font-sans">
       {/* Navbar */}
       <nav className="container mx-auto p-6 flex justify-between items-center">
-        <div className="text-2xl font-bold text-[#59E46E]">MovTrak</div>
+        <div className="text-2xl font-bold text-[#59E46E]">Movtrak</div>
         <div className="hidden md:flex space-x-6">
           <a href="#features" className="hover:text-[#59E46E] transition">Features</a>
           <a href="#how-it-works" className="hover:text-[#59E46E] transition">How It Works</a>
@@ -54,7 +54,7 @@ export default function LandingPage() {
       <section id="features" className="bg-gray-800 py-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Why Choose <span className="text-[#59E46E]">MovTrak</span>?
+            Why Choose <span className="text-[#59E46E]">Movtrak</span>?
           </h2>
           <div className="grid md:grid-cols-3 gap-12">
             {/* Feature 1 */}
@@ -90,7 +90,7 @@ export default function LandingPage() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">How It Works</h2>
         <div className="max-w-4xl mx-auto">
           {[
-            { step: 1, title: "Open the App", desc: "Launch MovTrak on your iOS device." },
+            { step: 1, title: "Open the App", desc: "Launch Movtrak on your iOS device." },
             { step: 2, title: "Frame Subject", desc: "Position camera towards yourself or the activity." },
             { step: 3, title: "Start Tracking", desc: "Tap record - AI automatically detects and centers you." },
             { step: 4, title: "Move Freely", desc: "Go ahead! The camera follows your movement." },
@@ -113,8 +113,8 @@ export default function LandingPage() {
       <footer className="bg-black py-12 border-t border-gray-800">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <span className="text-2xl font-bold text-[#59E46E]">MovTrak</span>
-            <p className="text-gray-500 mt-2">© 2025 MovTrak. All rights reserved.</p>
+            <span className="text-2xl font-bold text-[#59E46E]">Movtrak</span>
+            <p className="text-gray-500 mt-2">© 2025 Movtrak. All rights reserved.</p>
           </div>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-400 hover:text-white">Privacy Policy</a>

@@ -1,6 +1,6 @@
-# MovTrak Web
+# Movtrak Web
 
-**MovTrak Web** is the official landing page and web presence for the MovTrak iOS application ("Pocket Motion Tracking Camera"). It showcases the app's features, smart tracking technology, and use cases like rock climbing and solo workouts.
+**Movtrak Web** is the official landing page and web presence for the Movtrak iOS application ("Pocket Motion Tracking Camera"). It showcases the app's features, smart tracking technology, and use cases like rock climbing and solo workouts.
 
 ## Project Overview
 
