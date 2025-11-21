@@ -37,13 +37,11 @@ export default function LandingPage() {
         </div>
         <div className="md:w-1/2 flex justify-center">
           <div className="relative w-72 h-[580px] border-4 border-gray-700 bg-gray-800 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
-            {/* Placeholder for App Screenshot */}
-            <div className="absolute inset-0 bg-gray-800 flex items-center justify-center text-center p-4">
-              <div>
-                <div className="text-[#59E46E] text-6xl mb-4">📱</div>
-                <p className="text-gray-400">App Screenshot Placeholder</p>
-              </div>
-            </div>
+            <img
+              src="/app-move-track-screen-shot.png"
+              alt="Movtrak App Motion Tracking Screenshot"
+              className="absolute inset-0 w-full h-full object-cover rounded-[2.5rem]"
+            />
             {/* Notch */}
             <div className="absolute top-0 w-40 h-6 bg-gray-700 rounded-b-xl"></div>
           </div>
