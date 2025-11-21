@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://movtrak.zeabur.app/sitemap.xml

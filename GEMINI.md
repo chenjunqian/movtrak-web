@@ -1,6 +1,6 @@
-# MovTrak Web
+# Movtrak Web
 
-**MovTrak Web** is the official landing page and web presence for the MovTrak iOS application ("Pocket Motion Tracking Camera"). It showcases the app's features, smart tracking technology, and use cases like rock climbing and solo workouts.
+**Movtrak Web** is the official landing page and web presence for the Movtrak iOS application ("Pocket Motion Tracking Camera"). It showcases the app's features, smart tracking technology, and use cases like rock climbing and solo workouts.
 
 ## Project Overview
 
@@ -23,30 +23,39 @@
 This project uses `bun` for dependency management and script execution.
 
 ### Install Dependencies
+
 ```bash
 bun install
 ```
 
 ### Development Server
+
 Start the dev server with Hot Module Replacement (HMR):
+
 ```bash
 bun run dev
 ```
 
 ### Production Build
+
 Build the application for production (outputs to `dist/`):
+
 ```bash
 bun run build
 ```
 
 ### Preview Build
+
 Preview the production build locally:
+
 ```bash
 bun run preview
 ```
 
 ### Linting
+
 Run ESLint to check for code quality issues:
+
 ```bash
 bun run lint
 ```

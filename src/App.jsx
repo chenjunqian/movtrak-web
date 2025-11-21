@@ -17,7 +17,7 @@ function Support() {
         <Link to="/" className="text-[#59E46E] mb-8 inline-block hover:underline">← Back to Home</Link>
         <h1 className="text-3xl font-bold mb-6">Support</h1>
         <p className="text-gray-300 mb-4">
-          Need help with MovTrak? We're here to assist you.
+          Need help with Movtrak? We're here to assist you.
         </p>
         <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
           <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
