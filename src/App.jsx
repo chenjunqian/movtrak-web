@@ -24,7 +24,7 @@ function Support() {
           <p className="text-gray-400 mb-4">
             For any issues, bugs, or feature requests, please reach out to our support team.
           </p>
-          <a href="mailto:support@movtrak.app" className="text-[#59E46E] hover:underline">support@movtrak.app</a>
+          <a href="mailto:contactus@movtrak.app" className="text-[#59E46E] hover:underline">contactus@movtrak.app</a>
         </div>
       </div>
     </div>

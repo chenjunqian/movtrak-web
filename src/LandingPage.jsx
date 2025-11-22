@@ -112,12 +112,12 @@ export default function LandingPage() {
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <span className="text-2xl font-bold text-[#59E46E]">Movtrak</span>
-            <p className="text-gray-500 mt-2">© 2025 Movtrak. All rights reserved.</p>
+            <p className="text-gray-500 mt-2">© {new Date().getFullYear()} Movtrak. All rights reserved.</p>
           </div>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-400 hover:text-white">Privacy Policy</a>
             <a href="#" className="text-gray-400 hover:text-white">Terms of Service</a>
-            <a href="#" className="text-gray-400 hover:text-white">Contact</a>
+            <a href="mailto:contactus@movtrak.app" className="text-gray-400 hover:text-white">Contact</a>
           </div>
         </div>
       </footer>
