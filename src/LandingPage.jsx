@@ -36,14 +36,14 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="md:w-1/2 flex justify-center">
-          <div className="relative w-72 h-[580px] border-4 border-gray-700 bg-gray-800 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
+          <div className="relative w-68 h-[580px] border-4 border-gray-700 bg-gray-800 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
             <img
               src="/app-move-track-screen-shot.png"
               alt="Movtrak App Motion Tracking Screenshot"
               className="absolute inset-0 w-full h-full object-cover rounded-[2.5rem]"
             />
             {/* Notch */}
-            <div className="absolute top-0 w-40 h-6 bg-gray-700 rounded-b-xl"></div>
+            <div className="absolute top-0 w-26 h-6 bg-gray-700 rounded-b-xl"></div>
           </div>
         </div>
       </header>
@@ -95,7 +95,7 @@ export default function LandingPage() {
             { step: 5, title: "Save & Share", desc: "Stop recording and export your perfectly framed video." }
           ].map((item) => (
             <div key={item.step} className="flex mb-8 items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#59E46E] rounded-full flex items-center justify-center text-gray-900 font-bold text-xl mr-6">
+              <div className="shrink-0 w-12 h-12 bg-[#59E46E] rounded-full flex items-center justify-center text-gray-900 font-bold text-xl mr-6">
                 {item.step}
               </div>
               <div>
