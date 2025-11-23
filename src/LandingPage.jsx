@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function LandingPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans">
+    <div className="min-h-screen bg-gray-900 text-white font-sans relative">
       {/* Navbar */}
       <nav className="container mx-auto p-6 flex justify-between items-center">
         <div className="text-2xl font-bold text-[#59E46E]">Movtrak</div>
@@ -12,7 +17,10 @@ export default function LandingPage() {
           <a href="#how-it-works" className="hover:text-[#59E46E] transition">How It Works</a>
           <Link to="/support" className="hover:text-[#59E46E] transition">Support</Link>
         </div>
-        <button className="bg-[#59E46E] text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-[#4bd660] transition">
+        <button 
+          onClick={openModal}
+          className="bg-[#59E46E] text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-[#4bd660] transition"
+        >
           Download
         </button>
       </nav>
@@ -26,8 +34,14 @@ export default function LandingPage() {
           <p className="text-xl text-gray-300 mb-8">
             Transform your iPhone into a smart camera that automatically centers and tracks you. Perfect for rock climbing, workouts, and solo content creation.
           </p>
+          <p className="text-base text-gray-400 mb-8">
+            Movtrak is currently under active development and will be available on the App Store soon. Stay tuned for updates!
+          </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-[#59E46E] text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-[#4bd660] transition shadow-lg shadow-green-500/20">
+            <button 
+              onClick={openModal}
+              className="bg-[#59E46E] text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-[#4bd660] transition shadow-lg shadow-green-500/20"
+            >
               Get for iOS
             </button>
             <button className="border border-gray-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-800 transition">
@@ -121,6 +135,37 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* Development Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div 
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={closeModal}
+          ></div>
+          <div className="bg-gray-800 border border-gray-700 rounded-2xl p-8 max-w-md w-full relative z-10 shadow-2xl">
+            <button 
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+            >
+              ✕
+            </button>
+            <div className="text-center">
+              <div className="text-5xl mb-6">🚧</div>
+              <h3 className="text-2xl font-bold mb-4 text-white">Coming Soon!</h3>
+              <p className="text-gray-300 mb-6">
+                Movtrak is currently under active development. We're working hard to bring you the best motion tracking experience on iOS.
+              </p>
+              <button 
+                onClick={closeModal}
+                className="bg-[#59E46E] text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-[#4bd660] transition w-full"
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
