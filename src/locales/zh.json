@@ -1,0 +1,63 @@
+{
+  "navbar": {
+    "features": "功能特色",
+    "howItWorks": "使用方式",
+    "support": "支持",
+    "download": "下载"
+  },
+  "hero": {
+    "titlePart1": "您的掌上",
+    "titlePart2": "运动追踪",
+    "titlePart3": "相机",
+    "subtitle": "将您的 iPhone 转化为智能相机，可自动居中并追踪您。完美适用于攀岩、健身以及独自创作内容。",
+    "developmentNote": "Movtrak 目前正在积极开发中，即将在 App Store 上架。敬请期待更新！",
+    "getForIOS": "获取 iOS 版",
+    "watchDemo": "观看演示"
+  },
+  "features": {
+    "title": "为什么选择",
+    "titleBrand": "Movtrak",
+    "smartTracking": "智能追踪",
+    "smartTrackingDesc": "使用先进的 AI 计算机视觉自动让您保持在画面中心。不需要摄影师。",
+    "builtForAction": "为行动而生",
+    "builtForActionDesc": "适合攀岩、跑步以及家庭运动等动态运动，让您自由活动。",
+    "proQuality": "专业品质",
+    "proQualityDesc": "录制稳定、高质量的视频，平滑的追踪动作看起来很专业。"
+  },
+  "howItWorks": {
+    "title": "使用方式",
+    "step1": "打开应用程序",
+    "step1Desc": "在您的 iOS 设备上启动 Movtrak。",
+    "step2": "画面构图",
+    "step2Desc": "将相机对准您自己或活动对象。",
+    "step3": "开始追踪",
+    "step3Desc": "点击录制 - AI 自动检测并将您居中。",
+    "step4": "自由移动",
+    "step4Desc": "开始行动吧！相机跟随您的移动。",
+    "step5": "保存并分享",
+    "step5Desc": "停止录制并导出完美构图的视频。"
+  },
+  "footer": {
+    "copyright": "© {{year}} Movtrak。保留所有权利。",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "contact": "联系我们"
+  },
+  "modal": {
+    "title": "即将推出！",
+    "description": "Movtrak 目前正在积极开发中。我们正在努力为您带来 iOS 上最好的运动追踪体验。",
+    "button": "知道了"
+  },
+  "languageSwitcher": {
+    "english": "EN",
+    "chinese": "中"
+  },
+  "support": {
+    "title": "支持",
+    "backToHome": "← 返回首页",
+    "subtitle": "需要 Movtrak 的帮助？我们在这里为您提供帮助。",
+    "contactUs": "联系我们",
+    "contactDescription": "对于任何问题、错误或功能请求，请联系我们的支持团队。",
+    "email": "contactus@movtrak.app"
+  }
+}
