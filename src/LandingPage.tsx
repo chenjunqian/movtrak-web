@@ -31,7 +31,7 @@ export default function LandingPage() {
           <select
             value={i18n.language}
             onChange={handleLanguageChange}
-            className="bg-gray-800 border border-gray-600 text-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#59E46E] transition"
+            className="bg-gray-900 border border-gray-700 text-gray-300 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#59E46E] focus:border-transparent transition cursor-pointer"
           >
             <option value="en">{t('languageSwitcher.english')}</option>
             <option value="zh">{t('languageSwitcher.chinese')}</option>
