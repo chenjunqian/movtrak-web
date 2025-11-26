@@ -129,8 +129,8 @@ export default function LandingPage() {
             <p className="text-gray-500 mt-2">© {new Date().getFullYear()} Movtrak. All rights reserved.</p>
           </div>
           <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-white">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-white">Terms of Service</a>
+            <Link to="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link>
+            <Link to="/terms" className="text-gray-400 hover:text-white">Terms of Service</Link>
             <a href="mailto:contactus@movtrak.app" className="text-gray-400 hover:text-white">Contact</a>
           </div>
         </div>
