@@ -1,0 +1,63 @@
+{
+  "navbar": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "support": "Support",
+    "download": "Download"
+  },
+  "hero": {
+    "titlePart1": "Your Pocket",
+    "titlePart2": "Motion Tracking",
+    "titlePart3": "Camera",
+    "subtitle": "Transform your iPhone into a smart camera that automatically centers and tracks you. Perfect for rock climbing, workouts, and solo content creation.",
+    "developmentNote": "Movtrak is currently under active development and will be available on the App Store soon. Stay tuned for updates!",
+    "getForIOS": "Get for iOS",
+    "watchDemo": "Watch Demo"
+  },
+  "features": {
+    "title": "Why Choose",
+    "titleBrand": "Movtrak",
+    "smartTracking": "Smart Tracking",
+    "smartTrackingDesc": "Automatically keeps you centered in the frame using advanced AI computer vision. No cameraman needed.",
+    "builtForAction": "Built for Action",
+    "builtForActionDesc": "Ideal for dynamic sports like rock climbing, running, and home workouts where you need to move freely.",
+    "proQuality": "Pro Quality",
+    "proQualityDesc": "Record stable, high-quality video with smooth tracking movements that look professional."
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": "Open the App",
+    "step1Desc": "Launch Movtrak on your iOS device.",
+    "step2": "Frame Subject",
+    "step2Desc": "Position camera towards yourself or the activity.",
+    "step3": "Start Tracking",
+    "step3Desc": "Tap record - AI automatically detects and centers you.",
+    "step4": "Move Freely",
+    "step4Desc": "Go ahead! The camera follows your movement.",
+    "step5": "Save & Share",
+    "step5Desc": "Stop recording and export your perfectly framed video."
+  },
+  "footer": {
+    "copyright": "© {{year}} Movtrak. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contact": "Contact"
+  },
+  "modal": {
+    "title": "Coming Soon!",
+    "description": "Movtrak is currently under active development. We're working hard to bring you the best motion tracking experience on iOS.",
+    "button": "Got it"
+  },
+  "languageSwitcher": {
+    "english": "EN",
+    "chinese": "中"
+  },
+  "support": {
+    "title": "Support",
+    "backToHome": "← Back to Home",
+    "subtitle": "Need help with Movtrak? We're here to assist you.",
+    "contactUs": "Contact Us",
+    "contactDescription": "For any issues, bugs, or feature requests, please reach out to our support team.",
+    "email": "contactus@movtrak.app"
+  }
+}
