@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import LanguageIcon from './components/LanguageIcon'
 
 export default function LandingPage() {
   const { t, i18n } = useTranslation()
@@ -28,14 +29,17 @@ export default function LandingPage() {
           <Link to="/support" className="hover:text-[#59E46E] transition">{t('navbar.support')}</Link>
         </div>
         <div className="flex items-center space-x-3">
-          <select
-            value={i18n.language}
-            onChange={handleLanguageChange}
-            className="bg-gray-900 border border-gray-700 text-gray-300 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#59E46E] focus:border-transparent transition cursor-pointer"
-          >
-            <option value="en">{t('languageSwitcher.english')}</option>
-            <option value="zh">{t('languageSwitcher.chinese')}</option>
-          </select>
+          <div className="relative flex items-center">
+            <LanguageIcon className="absolute left-3 text-gray-300 w-5 h-5 pointer-events-none" />
+            <select
+              value={i18n.language}
+              onChange={handleLanguageChange}
+              className="bg-gray-900 border border-gray-700 text-gray-300 pl-10 pr-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#59E46E] focus:border-transparent transition cursor-pointer appearance-none"
+            >
+              <option value="en">{t('languageSwitcher.english')}</option>
+              <option value="zh">{t('languageSwitcher.chinese')}</option>
+            </select>
+          </div>
           <button
             onClick={openModal}
             className="bg-[#59E46E] text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-[#4bd660] transition"
