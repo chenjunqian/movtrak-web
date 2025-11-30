@@ -15,14 +15,23 @@
     "watchDemo": "观看演示"
   },
   "features": {
-    "title": "为什么选择",
-    "titleBrand": "Movtrak",
-    "smartTracking": "智能追踪",
-    "smartTrackingDesc": "使用先进的 AI 计算机视觉自动让您保持在画面中心。不需要摄影师。",
-    "builtForAction": "为行动而生",
-    "builtForActionDesc": "适合攀岩、跑步以及家庭运动等动态运动，让您自由活动。",
-    "proQuality": "专业品质",
-    "proQualityDesc": "录制稳定、高质量的视频，平滑的追踪动作看起来很专业。"
+    "title": "核心亮点模块设计：",
+    "titleBrand": "运动录制的新革命",
+    "highlight1": {
+      "title": "摆脱硬件限制 — 专注于每一次攀爬",
+      "coreValue": "极致轻量化使用与专业级追踪的完美融合。",
+      "description": "完全仅用 iPhone 即可实现，无需任何额外的稳定器或设备。"
+    },
+    "highlight2": {
+      "title": "AI 智能相机移动 — 自动捕捉您的巅峰时刻",
+      "coreValue": "自动化、高质量的内容创作。",
+      "description": "您的 iPhone 智能地跟随和构图您的移动 — 零拍摄经验需求。"
+    },
+    "highlight3": {
+      "title": "以最低成本创造您的运动时刻",
+      "coreValue": "低门槛、高产出的分享您表现的社区。",
+      "description": "无需额外硬件、订阅或拍摄工具 — 您的 iPhone 就足够了。"
+    }
   },
   "howItWorks": {
     "title": "使用方式",

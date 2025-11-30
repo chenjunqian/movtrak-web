@@ -15,14 +15,23 @@
     "watchDemo": "Watch Demo"
   },
   "features": {
-    "title": "Why Choose",
-    "titleBrand": "Movtrak",
-    "smartTracking": "Smart Tracking",
-    "smartTrackingDesc": "Automatically keeps you centered in the frame using advanced AI computer vision. No cameraman needed.",
-    "builtForAction": "Built for Action",
-    "builtForActionDesc": "Ideal for dynamic sports like rock climbing, running, and home workouts where you need to move freely.",
-    "proQuality": "Pro Quality",
-    "proQualityDesc": "Record stable, high-quality video with smooth tracking movements that look professional."
+    "title": "Core Highlight Module Design:",
+    "titleBrand": "A New Revolution in Recording",
+    "highlight1": {
+      "title": "Free Yourself from Hardware Limits — Focus on Every Climb",
+      "coreValue": "The perfect blend of extreme lightweight usage and professional-grade tracking.",
+      "description": "Achieved entirely with just an iPhone, without any additional stabilizers or equipment."
+    },
+    "highlight2": {
+      "title": "AI Smart Camera Movement — Automatically Capture Your Peak Moments",
+      "coreValue": "Automated, high-quality content creation.",
+      "description": "Your iPhone intelligently follows and frames your movement — zero filming experience needed."
+    },
+    "highlight3": {
+      "title": "Create Your Sports Moments at the Lowest Cost",
+      "coreValue": "A low-barrier, high-output community for sharing your performance.",
+      "description": "No extra hardware, subscriptions, or filming tools required — your iPhone is enough."
+    }
   },
   "howItWorks": {
     "title": "How It Works",

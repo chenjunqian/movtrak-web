@@ -86,35 +86,44 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Features Section */}
+      {/* Core Highlight Module Section */}
       <section id="features" className="bg-gray-800 py-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            {t('features.title')} <span className="text-[#59E46E]">{t('features.titleBrand')}</span>?
+            {t('features.title')} <span className="text-[#59E46E]">{t('features.titleBrand')}</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-12">
-            {/* Feature 1 */}
+            {/* Highlight 1 */}
             <div className="bg-gray-900 p-8 rounded-2xl hover:transform hover:-translate-y-2 transition duration-300">
-              <div className="text-4xl mb-6">🎯</div>
-              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.smartTracking')}</h3>
+              <div className="text-4xl mb-6">🌐</div>
+              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.highlight1.title')}</h3>
+              <p className="text-lg text-gray-300 mb-3">
+                {t('features.highlight1.coreValue')}
+              </p>
               <p className="text-gray-400">
-                {t('features.smartTrackingDesc')}
+                {t('features.highlight1.description')}
               </p>
             </div>
-            {/* Feature 2 */}
+            {/* Highlight 2 */}
             <div className="bg-gray-900 p-8 rounded-2xl hover:transform hover:-translate-y-2 transition duration-300">
-              <div className="text-4xl mb-6">🏔️</div>
-              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.builtForAction')}</h3>
+              <div className="text-4xl mb-6">🧠</div>
+              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.highlight2.title')}</h3>
+              <p className="text-lg text-gray-300 mb-3">
+                {t('features.highlight2.coreValue')}
+              </p>
               <p className="text-gray-400">
-                {t('features.builtForActionDesc')}
+                {t('features.highlight2.description')}
               </p>
             </div>
-            {/* Feature 3 */}
+            {/* Highlight 3 */}
             <div className="bg-gray-900 p-8 rounded-2xl hover:transform hover:-translate-y-2 transition duration-300">
-              <div className="text-4xl mb-6">🎬</div>
-              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.proQuality')}</h3>
+              <div className="text-4xl mb-6">💰</div>
+              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.highlight3.title')}</h3>
+              <p className="text-lg text-gray-300 mb-3">
+                {t('features.highlight3.coreValue')}
+              </p>
               <p className="text-gray-400">
-                {t('features.proQualityDesc')}
+                {t('features.highlight3.description')}
               </p>
             </div>
           </div>
