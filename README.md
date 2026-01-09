@@ -1,16 +1,68 @@
-# React + Vite
+# Movtrak
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Your Pocket Motion Tracking Camera
 
-Currently, two official plugins are available:
+![Movtrak Banner](./public/app-human-pose-detect-1.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> **Transform your iPhone into a smart camera that automatically centers and tracks you.**
 
-## React Compiler
+Movtrak is an iOS application designed to bring professional-grade motion tracking to everyone. Perfect for **rock climbing, solo workouts, and content creation**, it uses advanced AI to automatically frame and follow your movements—no cameraman or expensive gimbal required.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🌟 Why Movtrak?
 
-## Expanding the ESLint configuration
+### 1. Free Yourself from Hardware Limits
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Focus on Every Climb.**
+Experience the perfect blend of extreme lightweight usage and professional-grade tracking.
+
+* ✅ **No Gimbals Needed:** Achieved entirely with just your iPhone.
+* ✅ **No Extra Gear:** Forget about heavy stabilizers or additional equipment.
+
+### 2. AI Smart Camera Movement
+
+**Automatically Capture Your Peak Moments.**
+Your iPhone intelligently follows and frames your movement, creating automated, high-quality content.
+
+* 🎥 **Zero Filming Experience Required:** The AI handles the framing for you.
+* 🤖 **Smart Subject Detection:** Automatically locks onto you and keeps you in the shot.
+
+### 3. Create at the Lowest Cost
+
+**A New Revolution in Recording.**
+A low-barrier, high-output tool for sharing your performance.
+
+* 💰 **No Hidden Costs:** No extra hardware or expensive filming tools required.
+* 📱 **Just Your iPhone:** That's all you need to start creating.
+
+---
+
+## 📸 See It In Action
+
+| Smart Tracking | Video Editing |
+| :---: | :---: |
+| ![Tracking](./public/app-human-body-track-1.png) | ![Editing](./public/app-video-editting.png) |
+
+## 🚀 How It Works
+
+1. **Open the App:** Launch Movtrak on your iOS device.
+2. **Frame Subject:** Position your phone towards yourself or your activity area.
+3. **Start Tracking:** Tap record. Our AI automatically detects and centers you.
+4. **Move Freely:** Go ahead! The camera virtualizes a pan/tilt motion to follow you.
+5. **Save & Share:** Stop recording and export your perfectly framed video instantly.
+
+## 🚧 Status
+
+**Movtrak is currently under active development.**
+We are working hard to bring you the best motion tracking experience on iOS. Stay tuned for updates!
+
+## 🤝 Support & Contact
+
+Need help or have questions?
+📧 Email us at: [contactus@movtrak.app](mailto:contactus@movtrak.app)
+
+## 📄 License
+
+This project (website and open-source components) is distributed under the MIT License. See `LICENSE` for more information.
+
+---
+*Movtrak - Capture your movement, freedom in your pocket.*
