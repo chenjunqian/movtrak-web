@@ -96,12 +96,12 @@ export default function LandingPage() {
               '/app-album.png',
               '/app-video-editting.png'
             ].map((src, index) => (
-              <div key={index} className="flex-shrink-0 snap-center">
+              <div key={index} className="shrink-0 snap-center">
                 <div className="relative w-64 h-[500px] border-4 border-gray-700 bg-gray-800 rounded-[2.5rem] shadow-xl flex items-center justify-center overflow-hidden">
                   <img
                     src={src}
                     alt={`Screenshot ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover rounded-[2rem]"
+                    className="absolute inset-0 w-full h-full object-cover rounded-4xl"
                   />
                 </div>
               </div>
