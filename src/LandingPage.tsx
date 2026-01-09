@@ -13,6 +13,10 @@ export default function LandingPage() {
     changeLanguage(event.target.value)
   }
 
+  const downloadUrl = i18n.language.startsWith('zh')
+    ? 'https://apps.apple.com/cn/app/movtrak/id6755912677'
+    : 'https://apps.apple.com/us/app/movtrak/id6755912677'
+
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans relative">
       {/* Navbar */}
@@ -36,7 +40,7 @@ export default function LandingPage() {
             </select>
           </div>
           <a
-            href="https://testflight.apple.com/join/V3W3dtFy"
+            href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#59E46E] text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-[#4bd660] transition"
@@ -55,27 +59,21 @@ export default function LandingPage() {
           <p className="text-xl text-gray-300 mb-8">
             {t('hero.subtitle')}
           </p>
-          <p className="text-base text-gray-400 mb-8">
-            {t('hero.developmentNote')}
-          </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="https://testflight.apple.com/join/V3W3dtFy"
+              href={downloadUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#59E46E] text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-[#4bd660] transition shadow-lg shadow-green-500/20 text-center"
             >
               {t('hero.getForIOS')}
             </a>
-            <button className="border border-gray-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-800 transition">
-              {t('hero.watchDemo')}
-            </button>
           </div>
         </div>
         <div className="md:w-1/2 flex justify-center">
           <div className="relative w-68 h-[580px] border-4 border-gray-700 bg-gray-800 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
             <img
-              src="/app-move-track-screen-shot.png"
+              src="/app-human-pose-detect-1.png"
               alt="Movtrak App Motion Tracking Screenshot"
               className="absolute inset-0 w-full h-full object-cover rounded-[2.5rem]"
             />
@@ -84,6 +82,33 @@ export default function LandingPage() {
           </div>
         </div>
       </header>
+
+      {/* Screenshots Section */}
+      <section className="bg-gray-900 py-10 overflow-hidden">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            {t('screenshots.title')}
+          </h2>
+          <div className="flex overflow-x-auto space-x-6 pb-8 snap-x snap-mandatory scrollbar-hide justify-start md:justify-center">
+            {[
+              '/app-human-body-track-2.png',
+              '/app-human-pose-detect-2.png',
+              '/app-album.png',
+              '/app-video-editting.png'
+            ].map((src, index) => (
+              <div key={index} className="flex-shrink-0 snap-center">
+                <div className="relative w-64 h-[500px] border-4 border-gray-700 bg-gray-800 rounded-[2.5rem] shadow-xl flex items-center justify-center overflow-hidden">
+                  <img
+                    src={src}
+                    alt={`Screenshot ${index + 1}`}
+                    className="absolute inset-0 w-full h-full object-cover rounded-[2rem]"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Core Highlight Module Section */}
       <section id="features" className="bg-gray-800 py-20">

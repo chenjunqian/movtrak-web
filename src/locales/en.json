@@ -10,9 +10,11 @@
     "titlePart2": "Motion Tracking",
     "titlePart3": "Camera",
     "subtitle": "Transform your iPhone into a smart camera that automatically centers and tracks you. Perfect for rock climbing, workouts, and solo content creation.",
-    "developmentNote": "Movtrak is currently under active development and will be available on the App Store soon. Stay tuned for updates!",
     "getForIOS": "Get for iOS",
     "watchDemo": "Watch Demo"
+  },
+  "screenshots": {
+    "title": "See It In Action"
   },
   "features": {
     "title": "Core Highlight Module Design:",
