@@ -77,8 +77,6 @@ export default function LandingPage() {
               alt="Movtrak App Motion Tracking Screenshot"
               className="absolute inset-0 w-full h-full object-cover rounded-[2.5rem]"
             />
-            {/* Notch */}
-            <div className="absolute top-0 w-26 h-6 bg-gray-700 rounded-b-xl"></div>
           </div>
         </div>
       </header>
