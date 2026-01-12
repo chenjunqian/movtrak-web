@@ -19,10 +19,45 @@ export default function LandingPage() {
   const [isAutoRotating, setIsAutoRotating] = useState(true)
   const [nextImageIndex, setNextImageIndex] = useState<number | null>(null)
   const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
-  // Auto-rotate carousel every 2 seconds (only when not manually stopped)
+  // Preload all images before enabling carousel
   useEffect(() => {
-    if (!isAutoRotating) return
+    let loadedCount = 0
+    const totalImages = screenshotImages.length
+
+    const preloadImage = (src: string): Promise<void> => {
+      return new Promise((resolve) => {
+        const img = new Image()
+        img.onload = () => {
+          loadedCount++
+          if (loadedCount === totalImages) {
+            setIsLoading(false)
+          }
+          resolve()
+        }
+        img.onerror = () => {
+          // Resolve anyway to not block loading
+          loadedCount++
+          if (loadedCount === totalImages) {
+            setIsLoading(false)
+          }
+          resolve()
+        }
+        img.src = src
+      })
+    }
+
+    const loadAllImages = async () => {
+      const promises = screenshotImages.map((src) => preloadImage(src))
+      await Promise.all(promises)
+    }
+
+    loadAllImages()
+  }, [])
+  // Auto-rotate carousel every 2 seconds (only when not manually stopped and loading is complete)
+  useEffect(() => {
+    if (!isAutoRotating || isLoading) return
 
     const interval = setInterval(() => {
       const nextIndex = (currentImageIndex + 1) % screenshotImages.length
@@ -35,7 +70,7 @@ export default function LandingPage() {
       }, 300)
     }, 2000)
     return () => clearInterval(interval)
-  }, [isAutoRotating, currentImageIndex])
+  }, [isAutoRotating, currentImageIndex, isLoading])
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
@@ -46,7 +81,7 @@ export default function LandingPage() {
   }
 
   const goToNext = () => {
-    if (nextImageIndex !== null) return // Animation in progress
+    if (nextImageIndex !== null || isLoading) return // Animation in progress or still loading
     setIsAutoRotating(false)
     const nextIndex = (currentImageIndex + 1) % screenshotImages.length
     setNextImageIndex(nextIndex)
@@ -59,7 +94,7 @@ export default function LandingPage() {
   }
 
   const goToPrev = () => {
-    if (nextImageIndex !== null) return // Animation in progress
+    if (nextImageIndex !== null || isLoading) return // Animation in progress or still loading
     setIsAutoRotating(false)
     const prevIndex = (currentImageIndex - 1 + screenshotImages.length) % screenshotImages.length
     setNextImageIndex(prevIndex)
@@ -72,7 +107,7 @@ export default function LandingPage() {
   }
 
   const goToImage = (index: number) => {
-    if (nextImageIndex !== null || index === currentImageIndex) return
+    if (nextImageIndex !== null || index === currentImageIndex || isLoading) return
     setIsAutoRotating(false)
     setNextImageIndex(index)
     setSlideDirection(index > currentImageIndex ? 'left' : 'right')
@@ -146,8 +181,8 @@ export default function LandingPage() {
             {/* Previous button */}
             <button
               onClick={goToPrev}
-              disabled={nextImageIndex !== null}
-              className="absolute left-2 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-[#59E46E] hover:text-gray-900 transition cursor-pointer disabled:opacity-50"
+              disabled={nextImageIndex !== null || isLoading}
+              className={`absolute left-2 z-10 p-2 rounded-full bg-black/50 text-white transition cursor-pointer disabled:opacity-50 ${!isLoading ? 'hover:bg-[#59E46E] hover:text-gray-900' : ''}`}
               aria-label="Previous image"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -188,8 +223,8 @@ export default function LandingPage() {
             {/* Next button */}
             <button
               onClick={goToNext}
-              disabled={nextImageIndex !== null}
-              className="absolute right-2 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-[#59E46E] hover:text-gray-900 transition cursor-pointer disabled:opacity-50"
+              disabled={nextImageIndex !== null || isLoading}
+              className={`absolute right-2 z-10 p-2 rounded-full bg-black/50 text-white transition cursor-pointer disabled:opacity-50 ${!isLoading ? 'hover:bg-[#59E46E] hover:text-gray-900' : ''}`}
               aria-label="Next image"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,12 +233,12 @@ export default function LandingPage() {
             </button>
 
             {/* Image indicator */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 ${isLoading ? 'opacity-0' : ''}`}>
               {screenshotImages.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToImage(index)}
-                  disabled={nextImageIndex !== null}
+                  disabled={nextImageIndex !== null || isLoading}
                   className={`w-2 h-2 rounded-full transition cursor-pointer disabled:opacity-50 ${
                     index === currentImageIndex ? 'bg-[#59E46E]' : 'bg-gray-500 hover:bg-gray-400'
                   }`}
