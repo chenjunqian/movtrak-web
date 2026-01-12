@@ -19,7 +19,12 @@ Movtrak Web is a multilingual responsive website built with React + TypeScript +
 ```
 movtrak-web/
 ├── public/                 # Static assets
-│   ├── app-move-track-screen-shot.png  # App screenshot
+│   ├── app-human-pose-detect-1.png  # App screenshot - pose detection
+│   ├── app-human-pose-detect-2.png  # App screenshot - pose detection
+│   ├── app-human-body-track-1.png   # App screenshot - body tracking
+│   ├── app-human-body-track-2.png   # App screenshot - body tracking
+│   ├── app-album.png        # App screenshot - album feature
+│   ├── app-video-editting.png       # App screenshot - video editing
 │   ├── favicon.png         # Website icon
 │   └── logo.png           # Logo
 ├── src/
@@ -118,15 +123,16 @@ Uses Tailwind CSS to implement mobile-first responsive design, ensuring good dis
 ### Interactive Features
 
 - Language switcher: Supports real-time switching between Chinese and English
-- Download modal: Clicking the download button shows development-in-progress notification
+- App screenshot carousel: Features 6 app screenshots with slide animation and auto-rotation every 2 seconds, includes manual navigation (prev/next buttons, dot indicators), auto-rotation pauses on user interaction
+- Direct download links: Download buttons link directly to App Store (Chinese or English based on selected language)
 - Smooth scrolling: Navigation links support smooth scrolling within the page
 - Hover effects: Interactive feedback for buttons and links
 
 ## Development Notes
 
-1. **Image Assets**: App screenshot located at `public/app-move-track-screen-shot.png`
+1. **Image Assets**: 6 app screenshots located in `public/` for the carousel feature (pose detection, body tracking, album, and video editing features)
 2. **Brand Colors**: Primary color is green (#59E46E), used for emphasis elements and brand identity
-3. **Development Status**: Application is still under development, related notifications are displayed through modals
+3. **App Store**: Application is available on App Store with region-specific links (Chinese and English stores)
 4. **SEO**: Website includes sitemap.xml and robots.txt for search engine optimization
 
 ## Deployment Instructions
