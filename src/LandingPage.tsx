@@ -1,9 +1,41 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageIcon from './components/LanguageIcon'
 
+// Carousel images data
+const screenshotImages = [
+  '/app-human-pose-detect-1.png',
+  '/app-human-body-track-1.png',
+  '/app-human-body-track-2.png',
+  '/app-human-pose-detect-2.png',
+  '/app-album.png',
+  '/app-video-editting.png'
+]
+
 export default function LandingPage() {
   const { t, i18n } = useTranslation()
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isAutoRotating, setIsAutoRotating] = useState(true)
+  const [nextImageIndex, setNextImageIndex] = useState<number | null>(null)
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null)
+
+  // Auto-rotate carousel every 2 seconds (only when not manually stopped)
+  useEffect(() => {
+    if (!isAutoRotating) return
+
+    const interval = setInterval(() => {
+      const nextIndex = (currentImageIndex + 1) % screenshotImages.length
+      setNextImageIndex(nextIndex)
+      setSlideDirection('left')
+      setTimeout(() => {
+        setCurrentImageIndex(nextIndex)
+        setNextImageIndex(null)
+        setSlideDirection(null)
+      }, 300)
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [isAutoRotating, currentImageIndex])
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
@@ -11,6 +43,44 @@ export default function LandingPage() {
 
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     changeLanguage(event.target.value)
+  }
+
+  const goToNext = () => {
+    if (nextImageIndex !== null) return // Animation in progress
+    setIsAutoRotating(false)
+    const nextIndex = (currentImageIndex + 1) % screenshotImages.length
+    setNextImageIndex(nextIndex)
+    setSlideDirection('left')
+    setTimeout(() => {
+      setCurrentImageIndex(nextIndex)
+      setNextImageIndex(null)
+      setSlideDirection(null)
+    }, 300)
+  }
+
+  const goToPrev = () => {
+    if (nextImageIndex !== null) return // Animation in progress
+    setIsAutoRotating(false)
+    const prevIndex = (currentImageIndex - 1 + screenshotImages.length) % screenshotImages.length
+    setNextImageIndex(prevIndex)
+    setSlideDirection('right')
+    setTimeout(() => {
+      setCurrentImageIndex(prevIndex)
+      setNextImageIndex(null)
+      setSlideDirection(null)
+    }, 300)
+  }
+
+  const goToImage = (index: number) => {
+    if (nextImageIndex !== null || index === currentImageIndex) return
+    setIsAutoRotating(false)
+    setNextImageIndex(index)
+    setSlideDirection(index > currentImageIndex ? 'left' : 'right')
+    setTimeout(() => {
+      setCurrentImageIndex(index)
+      setNextImageIndex(null)
+      setSlideDirection(null)
+    }, 300)
   }
 
   const downloadUrl = i18n.language.startsWith('zh')
@@ -70,43 +140,80 @@ export default function LandingPage() {
             </a>
           </div>
         </div>
+        {/* App Screenshot - Carousel */}
         <div className="md:w-1/2 flex justify-center">
           <div className="relative w-68 h-[580px] border-4 border-gray-700 bg-gray-800 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
-            <img
-              src="/app-human-pose-detect-1.png"
-              alt="Movtrak App Motion Tracking Screenshot"
-              className="absolute inset-0 w-full h-full object-cover rounded-[2.5rem]"
-            />
+            {/* Previous button */}
+            <button
+              onClick={goToPrev}
+              disabled={nextImageIndex !== null}
+              className="absolute left-2 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-[#59E46E] hover:text-gray-900 transition cursor-pointer disabled:opacity-50"
+              aria-label="Previous image"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {/* Image display with slide animation */}
+            <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
+              {/* Current image */}
+              <img
+                src={screenshotImages[currentImageIndex]}
+                alt={`Screenshot ${currentImageIndex + 1}`}
+                className={`absolute inset-0 w-full h-full object-cover ${
+                  slideDirection === 'left'
+                    ? 'animate-slide-left'
+                    : slideDirection === 'right'
+                    ? 'animate-slide-right'
+                    : ''
+                }`}
+              />
+              {/* Next image (visible during animation) */}
+              {nextImageIndex !== null && (
+                <img
+                  src={screenshotImages[nextImageIndex]}
+                  alt={`Screenshot ${nextImageIndex + 1}`}
+                  className={`absolute inset-0 w-full h-full object-cover ${
+                    slideDirection === 'left'
+                      ? 'animate-enter-from-right'
+                      : slideDirection === 'right'
+                      ? 'animate-enter-from-left'
+                      : ''
+                  }`}
+                />
+              )}
+            </div>
+
+            {/* Next button */}
+            <button
+              onClick={goToNext}
+              disabled={nextImageIndex !== null}
+              className="absolute right-2 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-[#59E46E] hover:text-gray-900 transition cursor-pointer disabled:opacity-50"
+              aria-label="Next image"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* Image indicator */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {screenshotImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToImage(index)}
+                  disabled={nextImageIndex !== null}
+                  className={`w-2 h-2 rounded-full transition cursor-pointer disabled:opacity-50 ${
+                    index === currentImageIndex ? 'bg-[#59E46E]' : 'bg-gray-500 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to image ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </header>
-
-      {/* Screenshots Section */}
-      <section className="bg-gray-900 py-10 overflow-hidden">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {t('screenshots.title')}
-          </h2>
-          <div className="flex overflow-x-auto space-x-6 pb-8 snap-x snap-mandatory scrollbar-hide justify-start md:justify-center">
-            {[
-              '/app-human-body-track-2.png',
-              '/app-human-pose-detect-2.png',
-              '/app-album.png',
-              '/app-video-editting.png'
-            ].map((src, index) => (
-              <div key={index} className="shrink-0 snap-center">
-                <div className="relative w-68 h-[580px] border-4 border-gray-700 bg-gray-800 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
-                  <img
-                    src={src}
-                    alt={`Screenshot ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover rounded-[2.5rem]"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Core Highlight Module Section */}
       <section id="features" className="bg-gray-800 py-20">
