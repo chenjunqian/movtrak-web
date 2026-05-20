@@ -50,3 +50,5 @@ No tests, no formatter config.
 - Image assets for the carousel live in `/public/` (e.g., `/app-human-pose-detect-1.png`), not imported via Vite.
 - i18next uses `resources` object (not loading via backend plugin). New locale keys must be added to both `en.json` and `zh.json`.
 - No `path` aliases configured; imports are relative.
+- `public/_redirects` contains `/* /index.html 200` for Cloudflare Pages SPA fallback.
+- CF Pages build environment lacks `bun` — use `npx --yes bun install && npx --yes bun run build` as build command, or use npm-equivalent.
