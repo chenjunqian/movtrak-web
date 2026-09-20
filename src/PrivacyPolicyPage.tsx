@@ -64,9 +64,9 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">4. 第三方服务</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">4. 第三方服务与支付信息</h2>
             <p>
-              本应用不集成第三方广告网络或数据代理商。
+              本应用不集成第三方广告网络或数据追踪代理。所有应用内购买与付款均由 Apple App Store 独家安全处理。Movtrak 不会收集、访问或存储您的信用卡卡号、银行账户或账单信息。
             </p>
           </section>
 
@@ -147,9 +147,9 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">4. Third-Party Services</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">4. Third-Party Services & Payment Data</h2>
             <p>
-              The app does not integrate with third-party advertising networks or data brokers.
+              The app does not integrate with third-party advertising networks or data tracking brokers. All In-App Purchases and payments are securely handled by Apple via the App Store. Movtrak does not collect, access, or store your credit card, bank account, or billing details.
             </p>
           </section>
 

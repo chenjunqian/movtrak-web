@@ -164,15 +164,21 @@ export default function LandingPage() {
           <p className="text-xl text-gray-300 mb-8">
             {t('hero.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href={downloadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#59E46E] text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-[#4bd660] transition shadow-lg shadow-green-500/20 text-center"
-            >
-              {t('hero.getForIOS')}
-            </a>
+          <div className="flex flex-col items-start gap-3">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href={downloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#59E46E] text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-[#4bd660] transition shadow-lg shadow-green-500/20 text-center"
+              >
+                {t('hero.getForIOS')}
+              </a>
+            </div>
+            <p className="text-sm text-gray-400 flex items-center gap-2 pt-1">
+              <span className="inline-block w-2 h-2 rounded-full bg-[#59E46E]"></span>
+              {t('hero.pricingTag')}
+            </p>
           </div>
         </div>
         {/* App Screenshot - Carousel */}

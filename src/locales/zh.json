@@ -11,6 +11,7 @@
     "titlePart3": "相机",
     "subtitle": "将您的 iPhone 转化为智能相机，可自动居中并追踪您。完美适用于攀岩、健身以及独自创作内容。",
     "getForIOS": "获取 iOS 版",
+    "pricingTag": "7天免费试用 · 一次买断无订阅",
     "watchDemo": "观看演示"
   },
   "features": {
@@ -28,14 +29,14 @@
     },
     "highlight3": {
       "title": "以最低成本创造您的运动时刻",
-      "coreValue": "低门槛、高产出的分享您表现的社区。",
-      "description": "无需额外硬件、订阅或拍摄工具 — 您的 iPhone 就足够了。"
+      "coreValue": "7 天全功能免费试用，满意后再一次性买断。",
+      "description": "无需额外硬件或长期按月订阅 — 免费试用 7 天，满意后一次买断永久使用。"
     }
   },
   "howItWorks": {
     "title": "使用方式",
-    "step1": "打开应用程序",
-    "step1Desc": "在您的 iOS 设备上启动 Movtrak。",
+    "step1": "下载并开启免费试用",
+    "step1Desc": "在 App Store 免费下载 Movtrak，立享 7 天全功能体验。",
     "step2": "画面构图",
     "step2Desc": "将相机对准您自己或活动对象。",
     "step3": "开始追踪",

@@ -11,6 +11,7 @@
     "titlePart3": "Camera",
     "subtitle": "Transform your iPhone into a smart camera that automatically centers and tracks you. Perfect for rock climbing, workouts, and solo content creation.",
     "getForIOS": "Get for iOS",
+    "pricingTag": "7-Day Free Trial · One-time Purchase · No Subscription",
     "watchDemo": "Watch Demo"
   },
   "features": {
@@ -28,14 +29,14 @@
     },
     "highlight3": {
       "title": "Create Your Sports Moments at the Lowest Cost",
-      "coreValue": "A low-barrier, high-output community for sharing your performance.",
-      "description": "No extra hardware, subscriptions, or filming tools required — your iPhone is enough."
+      "coreValue": "7-day full access free trial, then simple one-time purchase.",
+      "description": "No extra hardware or recurring subscriptions required — try free for 7 days, then unlock lifetime access forever."
     }
   },
   "howItWorks": {
     "title": "How It Works",
-    "step1": "Open the App",
-    "step1Desc": "Launch Movtrak on your iOS device.",
+    "step1": "Download & Start Free Trial",
+    "step1Desc": "Download Movtrak on the App Store to start your 7-day full access trial.",
     "step2": "Frame Subject",
     "step2Desc": "Position camera towards yourself or the activity.",
     "step3": "Start Tracking",
