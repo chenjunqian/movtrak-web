@@ -29,11 +29,37 @@ export default function SupportPage() {
           </section>
 
           <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <h2 className="text-xl font-semibold mb-4 text-white">联系我们</h2>
-            <p className="mb-4">
-              对于任何问题、错误报告或功能请求，请联系我们的支持团队。
+            <h2 className="text-xl font-semibold mb-4 text-white">联系我们与反馈</h2>
+            <p className="mb-4 text-gray-300">
+              对于任何问题、错误报告或功能建议，欢迎通过以下渠道与我们联系。
             </p>
-            <a href="mailto:contactus@movtrak.app" className="text-[#59E46E] hover:underline">contactus@movtrak.app</a>
+            <div className="grid md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700/60 flex flex-col justify-between">
+                <div>
+                  <div className="text-sm font-semibold text-gray-300 mb-1">📮 官方邮箱</div>
+                  <a href="mailto:contactus@movtrak.app" className="text-[#59E46E] hover:underline font-mono text-sm break-all">
+                    contactus@movtrak.app
+                  </a>
+                </div>
+                <p className="text-xs text-gray-400 mt-3">详细问题咨询、商务合作与 Bug 反馈</p>
+              </div>
+
+              <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700/60 flex flex-col justify-between">
+                <div>
+                  <div className="text-sm font-semibold text-gray-300 mb-1">📕 小红书官方主页</div>
+                  <a
+                    href="https://xhslink.cn/o/5ZFvMll71iW"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#59E46E] hover:underline font-medium text-sm inline-flex items-center gap-1"
+                  >
+                    <span>Movtrak (号: 94148273564)</span>
+                    <span className="text-xs">↗</span>
+                  </a>
+                </div>
+                <p className="text-xs text-gray-400 mt-3">关注主页、交流反馈与使用技巧分享</p>
+              </div>
+            </div>
           </div>
 
           <section>
@@ -85,11 +111,37 @@ export default function SupportPage() {
           </section>
 
           <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <h2 className="text-xl font-semibold mb-4 text-white">Contact Us</h2>
-            <p className="mb-4">
-              For any issues, bugs, or feature requests, please reach out to our support team.
+            <h2 className="text-xl font-semibold mb-4 text-white">Contact & Support</h2>
+            <p className="mb-4 text-gray-300">
+              For any issues, bugs, or feature requests, please reach out to our team.
             </p>
-            <a href="mailto:contactus@movtrak.app" className="text-[#59E46E] hover:underline">contactus@movtrak.app</a>
+            <div className="grid md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700/60 flex flex-col justify-between">
+                <div>
+                  <div className="text-sm font-semibold text-gray-300 mb-1">📮 Email Support</div>
+                  <a href="mailto:contactus@movtrak.app" className="text-[#59E46E] hover:underline font-mono text-sm break-all">
+                    contactus@movtrak.app
+                  </a>
+                </div>
+                <p className="text-xs text-gray-400 mt-3">General inquiries, bug reports & collaborations</p>
+              </div>
+
+              <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700/60 flex flex-col justify-between">
+                <div>
+                  <div className="text-sm font-semibold text-gray-300 mb-1">📕 Xiaohongshu (RED)</div>
+                  <a
+                    href="https://xhslink.cn/o/5ZFvMll71iW"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#59E46E] hover:underline font-medium text-sm inline-flex items-center gap-1"
+                  >
+                    <span>Movtrak (ID: 94148273564)</span>
+                    <span className="text-xs">↗</span>
+                  </a>
+                </div>
+                <p className="text-xs text-gray-400 mt-3">Community updates, feedback & discussions</p>
+              </div>
+            </div>
           </div>
 
           <section>
