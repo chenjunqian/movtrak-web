@@ -118,9 +118,10 @@ export default function LandingPage() {
     }, 300)
   }
 
-  const downloadUrl = i18n.language.startsWith('zh')
-    ? 'https://apps.apple.com/cn/app/movtrak/id6755912677'
-    : 'https://apps.apple.com/us/app/movtrak/id6755912677'
+  // The China mainland storefront does not list the app yet (ICP filing
+  // exception pending with Apple), so every CTA points at the US storefront.
+  const appStoreUrl = 'https://apps.apple.com/us/app/movtrak/id6755912677'
+  const isZh = i18n.language.startsWith('zh')
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans relative">
@@ -145,7 +146,7 @@ export default function LandingPage() {
             </select>
           </div>
           <a
-            href={downloadUrl}
+            href={appStoreUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#59E46E] text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-[#4bd660] transition"
@@ -167,7 +168,7 @@ export default function LandingPage() {
           <div className="flex flex-col items-start gap-3">
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href={downloadUrl}
+                href={appStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#59E46E] text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-[#4bd660] transition shadow-lg shadow-green-500/20 text-center"
@@ -179,6 +180,11 @@ export default function LandingPage() {
               <span className="inline-block w-2 h-2 rounded-full bg-[#59E46E]"></span>
               {t('hero.pricingTag')}
             </p>
+            {isZh && (
+              <p className="text-sm text-gray-400 leading-relaxed border-l-2 border-[#59E46E]/60 pl-3 pt-2 max-w-md">
+                {t('hero.regionNotice')}
+              </p>
+            )}
           </div>
         </div>
         {/* App Screenshot - Carousel */}
