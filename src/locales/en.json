@@ -1,57 +1,160 @@
 {
   "navbar": {
     "features": "Features",
-    "howItWorks": "How It Works",
+    "howItWorks": "Protocol",
     "support": "Support",
     "download": "Download"
   },
+  "topbar": {
+    "system": "// POCKET_MOTION_TRACKING_SYSTEM",
+    "version": "[ V1.4 ]",
+    "language": "Select language"
+  },
   "hero": {
+    "boot1": "> SYS.BOOT ......... MOVTRAK V1.4",
+    "boot2": "> VISION.CORE ...... ON-DEVICE",
+    "boot3": "> SUBJECT.LOCK ..... READY",
+    "line1": "POCKET",
+    "line2": "MOTION",
+    "line3": "TRACKING",
     "titlePart1": "Your Pocket",
     "titlePart2": "Motion Tracking",
     "titlePart3": "Camera",
-    "subtitle": "Transform your iPhone into a smart camera that automatically centers and tracks you. Perfect for rock climbing, workouts, and solo content creation.",
+    "subtitle": "Turn your iPhone into a camera that centres and follows you. Built for climbers, lifters and solo creators who train without a camera operator.",
+    "primaryCta": "Start free trial",
+    "secondaryCta": "See spec sheet",
     "getForIOS": "Get for iOS",
-    "pricingTag": "7-Day Free Trial · One-time Purchase · No Subscription",
-    "regionNotice": "Note: Movtrak isn't listed on the China mainland App Store yet (we're working with Apple to restore it). The link above opens the US App Store, so please use a US, Hong Kong, or other non-mainland Apple ID.",
-    "watchDemo": "Watch Demo"
+    "pricingTag": "7 DAYS FULL ACCESS · THEN $9.99 ONE-TIME · NO SUBSCRIPTION",
+    "regionNotice": "Note: Movtrak isn't listed on the China mainland App Store yet (we're working with Apple to restore it). The links above open the US App Store, so please use a US, Hong Kong, or other non-mainland Apple ID.",
+    "watchDemo": "Watch Demo",
+    "spec1Label": "HARDWARE",
+    "spec1Value": "IPHONE ONLY",
+    "spec2Label": "OPERATOR",
+    "spec2Value": "NO CREW",
+    "spec3Label": "SETUP",
+    "spec3Value": "TAP. TRACK.",
+    "railSubject": "SUBJECT_01",
+    "railHint": "AUTO-CYCLE 3.4S",
+    "railLock": "SUBJECT LOCK",
+    "railLive": "// LIVE",
+    "railLabel": "MOTION_TRACKING_UNIT",
+    "railCaption": "REC.VIEWPORT",
+    "playing": "AUTO",
+    "paused": "PAUSED",
+    "pause": "Pause auto-cycle",
+    "play": "Resume auto-cycle",
+    "imageAlt": "Movtrak app screen {{index}}",
+    "prev": "Previous screen",
+    "next": "Next screen"
+  },
+  "telemetry": {
+    "section": "03 // SENSOR_SUITE",
+    "title1": "EYES",
+    "title2": "THAT",
+    "title3": "FOLLOW",
+    "intro": "The camera reads your body, locks the frame and holds it while you move. Everything runs on-device — no operator, no gimbal, no cloud round-trip.",
+    "meterLabel": "SCROLL VELOCITY",
+    "meterHint": "⚡ TRACKING LIVE",
+    "stat1Label": "ON-DEVICE AI",
+    "stat1Note": "Vision runs locally on your iPhone.",
+    "stat2Label": "EXTRA HARDWARE",
+    "stat2Note": "No gimbal, no tripod, no operator.",
+    "stat3Label": "FREE TRIAL",
+    "stat3Note": "Full pro access before you decide.",
+    "stat4Label": "LIFETIME UNLOCK",
+    "stat4Note": "One-time purchase. Never renews.",
+    "modulesLabel": "CORE_MODULES"
   },
   "features": {
     "title": "Core Highlight Module Design:",
     "titleBrand": "A New Revolution in Recording",
     "highlight1": {
-      "title": "Free Yourself from Hardware Limits — Focus on Every Climb",
-      "coreValue": "The perfect blend of extreme lightweight usage and professional-grade tracking.",
-      "description": "Achieved entirely with just an iPhone, without any additional stabilizers or equipment."
+      "title": "Free yourself from hardware limits",
+      "coreValue": "Extreme lightweight use meets professional-grade tracking.",
+      "description": "Achieved entirely with just an iPhone — no additional stabilisers or equipment."
     },
     "highlight2": {
-      "title": "AI Smart Camera Movement — Automatically Capture Your Peak Moments",
+      "title": "AI camera movement that catches peak moments",
       "coreValue": "Automated, high-quality content creation.",
       "description": "Your iPhone intelligently follows and frames your movement — zero filming experience needed."
     },
     "highlight3": {
-      "title": "Create Your Sports Moments at the Lowest Cost",
-      "coreValue": "7-day full access free trial, then simple one-time purchase.",
-      "description": "No extra hardware or recurring subscriptions required — try free for 7 days, then unlock lifetime access forever."
+      "title": "Own your sports footage at the lowest cost",
+      "coreValue": "7-day full access trial, then a simple one-time purchase.",
+      "description": "No extra hardware or recurring subscriptions — try free for 7 days, then unlock lifetime access."
     }
   },
   "howItWorks": {
+    "section": "04 // PROTOCOL",
+    "title1": "BOOT",
+    "title2": "SEQUENCE",
+    "intro": "Five moves from download to a clean export. No rig, no second person, no editing degree required.",
+    "tableLabel": "SYSTEM_SPEC",
     "title": "How It Works",
-    "step1": "Download & Start Free Trial",
+    "step1": "Download & start free trial",
     "step1Desc": "Download Movtrak on the App Store to start your 7-day full access trial.",
-    "step2": "Frame Subject",
-    "step2Desc": "Position camera towards yourself or the activity.",
-    "step3": "Start Tracking",
-    "step3Desc": "Tap record - AI automatically detects and centers you.",
-    "step4": "Move Freely",
-    "step4Desc": "Go ahead! The camera follows your movement.",
-    "step5": "Save & Share",
+    "step2": "Frame subject",
+    "step2Desc": "Position the camera towards yourself or the activity.",
+    "step3": "Start tracking",
+    "step3Desc": "Tap record — AI automatically detects and centres you.",
+    "step4": "Move freely",
+    "step4Desc": "Go ahead. The camera follows your movement.",
+    "step5": "Save & share",
     "step5Desc": "Stop recording and export your perfectly framed video."
+  },
+  "spec": {
+    "sensor": {
+      "label": "SENSOR",
+      "value": "APPLE VISION · ON-DEVICE"
+    },
+    "tracking": {
+      "label": "TRACKING",
+      "value": "CONTINUOUS SUBJECT LOCK"
+    },
+    "pipeline": {
+      "label": "PIPELINE",
+      "value": "REAL-TIME PREVIEW"
+    },
+    "privacy": {
+      "label": "PRIVACY",
+      "value": "NO CLOUD UPLOAD"
+    },
+    "output": {
+      "label": "OUTPUT",
+      "value": "VIDEO EXPORT · ALBUM"
+    },
+    "hardware": {
+      "label": "HARDWARE",
+      "value": "IPHONE ONLY · NO GIMBAL"
+    },
+    "trial": {
+      "label": "TRIAL",
+      "value": "7 DAYS · FULL ACCESS"
+    },
+    "pricing": {
+      "label": "PRICING",
+      "value": "$9.99 · ONE-TIME"
+    }
+  },
+  "cta": {
+    "section": "05 // ACQUIRE",
+    "title1": "START",
+    "title2": "TRACKING",
+    "body": "Seven days of full access. Keep it for $9.99 — one payment, lifetime unlock, no renewal.",
+    "button": "ACQUIRE MOVTRAK",
+    "price": "$9.99 ONE-TIME",
+    "note": "NO SUBSCRIPTION",
+    "barcode": "SERIAL // MOVTRAK-6755912677",
+    "idLabel": "APP_STORE_ID"
   },
   "footer": {
     "copyright": "© {{year}} Movtrak. All rights reserved.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "contact": "Contact"
+    "contact": "Contact",
+    "tagline": "Pocket motion-tracking camera. Built for climbing, solo training and the moments you would otherwise miss.",
+    "status": "SYS.READY",
+    "about": "About"
   },
   "modal": {
     "title": "Coming Soon!",
@@ -69,5 +172,9 @@
     "contactUs": "Contact Us",
     "contactDescription": "For any issues, bugs, or feature requests, please reach out to our support team.",
     "email": "contactus@movtrak.app"
+  },
+  "pages": {
+    "onThisPage": "ON THIS PAGE",
+    "backHome": "BACK TO HOME"
   }
 }

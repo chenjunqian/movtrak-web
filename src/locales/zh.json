@@ -1,57 +1,160 @@
 {
   "navbar": {
     "features": "功能特色",
-    "howItWorks": "使用方式",
+    "howItWorks": "使用流程",
     "support": "支持",
     "download": "下载"
   },
+  "topbar": {
+    "system": "// POCKET_MOTION_TRACKING_SYSTEM",
+    "version": "[ V1.4 ]",
+    "language": "选择语言"
+  },
   "hero": {
+    "boot1": "> SYS.BOOT ......... MOVTRAK V1.4",
+    "boot2": "> VISION.CORE ...... ON-DEVICE",
+    "boot3": "> SUBJECT.LOCK ..... READY",
+    "line1": "掌上",
+    "line2": "运动追踪",
+    "line3": "相机",
     "titlePart1": "您的掌上",
     "titlePart2": "运动追踪",
     "titlePart3": "相机",
-    "subtitle": "将您的 iPhone 转化为智能相机，可自动居中并追踪您。完美适用于攀岩、健身以及独自创作内容。",
+    "subtitle": "把 iPhone 变成会自动居中、跟随你的相机。为攀岩、力量训练与独自创作而生 —— 无需摄影助理。",
+    "primaryCta": "开始 7 天免费试用",
+    "secondaryCta": "查看系统规格",
     "getForIOS": "获取 iOS 版",
-    "pricingTag": "7天免费试用 · 一次买断无订阅",
+    "pricingTag": "7 天全功能试用 · 之后 $9.99 一次买断 · 无订阅",
     "regionNotice": "提示：Movtrak 目前暂未在中国大陆区 App Store 上架（我们正在与 Apple 沟通恢复）。上方链接指向美国区 App Store，请使用美国区或香港等其他非中国大陆区 Apple ID 打开。",
-    "watchDemo": "观看演示"
+    "watchDemo": "观看演示",
+    "spec1Label": "硬件",
+    "spec1Value": "仅需 iPhone",
+    "spec2Label": "摄影助理",
+    "spec2Value": "无需他人",
+    "spec3Label": "启动",
+    "spec3Value": "点击即追踪",
+    "railSubject": "SUBJECT_01",
+    "railHint": "自动轮播 3.4S",
+    "railLock": "主体锁定",
+    "railLive": "// LIVE",
+    "railLabel": "MOTION_TRACKING_UNIT",
+    "railCaption": "REC.VIEWPORT",
+    "playing": "自动",
+    "paused": "已暂停",
+    "pause": "暂停自动轮播",
+    "play": "恢复自动轮播",
+    "imageAlt": "Movtrak 应用界面 {{index}}",
+    "prev": "上一张界面",
+    "next": "下一张界面"
+  },
+  "telemetry": {
+    "section": "03 // SENSOR_SUITE",
+    "title1": "会跟随的",
+    "title2": "智能",
+    "title3": "镜头",
+    "intro": "相机读取你的身体，锁定画面，并在你移动时持续跟随。全部在本机完成 —— 无需摄影助理、无需稳定器、无需上传云端。",
+    "meterLabel": "滚动速度",
+    "meterHint": "⚡ 追踪在线",
+    "stat1Label": "本机 AI",
+    "stat1Note": "视觉运算完全在你的 iPhone 上运行。",
+    "stat2Label": "额外硬件",
+    "stat2Note": "不需要稳定器、三脚架或摄影助理。",
+    "stat3Label": "免费试用",
+    "stat3Note": "先完整使用 Pro 功能，再决定是否解锁。",
+    "stat4Label": "终身解锁",
+    "stat4Note": "一次买断，不会自动续费。",
+    "modulesLabel": "核心模块"
   },
   "features": {
     "title": "核心亮点模块设计：",
     "titleBrand": "运动录制的新革命",
     "highlight1": {
-      "title": "摆脱硬件限制 — 专注于每一次攀爬",
+      "title": "摆脱硬件限制",
       "coreValue": "极致轻量化使用与专业级追踪的完美融合。",
       "description": "完全仅用 iPhone 即可实现，无需任何额外的稳定器或设备。"
     },
     "highlight2": {
-      "title": "AI 智能相机移动 — 自动捕捉您的巅峰时刻",
+      "title": "AI 智能运镜，捕捉巅峰时刻",
       "coreValue": "自动化、高质量的内容创作。",
-      "description": "您的 iPhone 智能地跟随和构图您的移动 — 零拍摄经验需求。"
+      "description": "你的 iPhone 会智能跟随并为你的动作构图 —— 零拍摄经验要求。"
     },
     "highlight3": {
-      "title": "以最低成本创造您的运动时刻",
-      "coreValue": "7 天全功能免费试用，满意后再一次性买断。",
-      "description": "无需额外硬件或长期按月订阅 — 免费试用 7 天，满意后一次买断永久使用。"
+      "title": "以最低成本拥有你的运动影像",
+      "coreValue": "7 天全功能免费试用，满意后一次买断。",
+      "description": "无需额外硬件或长期订阅 —— 免费试用 7 天，之后一次买断永久使用。"
     }
   },
   "howItWorks": {
+    "section": "04 // PROTOCOL",
+    "title1": "启动",
+    "title2": "流程",
+    "intro": "从下载到导出成片，只需五个动作。无需器材、无需同伴、无需剪辑基础。",
+    "tableLabel": "SYSTEM_SPEC",
     "title": "使用方式",
     "step1": "下载并开启免费试用",
     "step1Desc": "在 App Store 免费下载 Movtrak，立享 7 天全功能体验。",
     "step2": "画面构图",
-    "step2Desc": "将相机对准您自己或活动对象。",
+    "step2Desc": "将相机对准你自己或活动对象。",
     "step3": "开始追踪",
-    "step3Desc": "点击录制 - AI 自动检测并将您居中。",
+    "step3Desc": "点击录制 —— AI 自动检测并将你居中。",
     "step4": "自由移动",
-    "step4Desc": "开始行动吧！相机跟随您的移动。",
+    "step4Desc": "开始行动吧，相机会跟随你的移动。",
     "step5": "保存并分享",
     "step5Desc": "停止录制并导出完美构图的视频。"
+  },
+  "spec": {
+    "sensor": {
+      "label": "SENSOR",
+      "value": "APPLE VISION · 本机运行"
+    },
+    "tracking": {
+      "label": "TRACKING",
+      "value": "持续主体锁定"
+    },
+    "pipeline": {
+      "label": "PIPELINE",
+      "value": "实时预览"
+    },
+    "privacy": {
+      "label": "PRIVACY",
+      "value": "不上传云端"
+    },
+    "output": {
+      "label": "OUTPUT",
+      "value": "视频导出 · 相册"
+    },
+    "hardware": {
+      "label": "HARDWARE",
+      "value": "仅需 iPhone · 无稳定器"
+    },
+    "trial": {
+      "label": "TRIAL",
+      "value": "7 天 · 全功能"
+    },
+    "pricing": {
+      "label": "PRICING",
+      "value": "$9.99 · 一次买断"
+    }
+  },
+  "cta": {
+    "section": "05 // ACQUIRE",
+    "title1": "开始",
+    "title2": "追踪",
+    "body": "7 天全功能试用。满意后 $9.99 一次买断 —— 永久解锁，不会自动续费。",
+    "button": "获取 MOVTRAK",
+    "price": "$9.99 一次买断",
+    "note": "无订阅",
+    "barcode": "SERIAL // MOVTRAK-6755912677",
+    "idLabel": "APP_STORE_ID"
   },
   "footer": {
     "copyright": "© {{year}} Movtrak。保留所有权利。",
     "privacyPolicy": "隐私政策",
     "termsOfService": "服务条款",
-    "contact": "联系我们"
+    "contact": "联系我们",
+    "tagline": "掌上运动追踪相机。为攀岩、独自训练，以及那些否则会错过的瞬间而生。",
+    "status": "SYS.READY",
+    "about": "关于"
   },
   "modal": {
     "title": "即将推出！",
@@ -69,5 +172,9 @@
     "contactUs": "联系我们",
     "contactDescription": "对于任何问题、错误或功能请求，请联系我们的支持团队。",
     "email": "contactus@movtrak.app"
+  },
+  "pages": {
+    "onThisPage": "本页索引",
+    "backHome": "返回首页"
   }
 }
