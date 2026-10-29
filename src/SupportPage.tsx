@@ -1,195 +1,240 @@
 import { Link } from 'react-router-dom'
+import PageShell from './components/PageShell'
+import SectionHead from './components/SectionHead'
+import { APP_STORE_URL } from './constants'
+import { useDocLanguage } from './hooks/useDocLanguage'
 
 export default function SupportPage() {
+  const { lang, setLang } = useDocLanguage()
+  const isZh = lang === 'zh'
+
+  const copy = isZh
+    ? {
+        titleSolid: '支持',
+        titleOutline: '中心',
+        intro: '需要 Movtrak 的帮助？我们在这里为您提供帮助。',
+        contactTitle: '联系我们与反馈',
+        contactIntro: '对于任何问题、错误报告或功能建议，欢迎通过以下渠道与我们联系。',
+        channels: [
+          {
+            title: '官方邮箱',
+            value: 'contactus@movtrak.app',
+            href: 'mailto:contactus@movtrak.app',
+            note: '详细问题咨询、商务合作与 Bug 反馈',
+            external: false,
+          },
+          {
+            title: '小红书官方主页',
+            value: 'Movtrak (号: 94148273564)',
+            href: 'https://xhslink.cn/o/5ZFvMll71iW',
+            note: '关注主页、交流反馈与使用技巧分享',
+            external: true,
+          },
+        ],
+        faqTitle: '常见问题解答',
+        faqs: [
+          {
+            q: '应用程序兼容性',
+            a: 'Movtrak 专为 iOS 设备设计，支持 iPhone 和 iPad。',
+          },
+          {
+            q: '运动跟踪准确性',
+            a: '我们的 AI 算法经过优化的设备上处理，确保最佳性能，而无需云连接。',
+          },
+          {
+            q: '隐私安全',
+            a: 'Movtrak 所有处理都在设备本地进行，不会上传任何个人数据或视频内容。',
+          },
+        ],
+        resourcesTitle: '更多资源',
+        privacy: '隐私政策',
+        terms: '服务条款',
+        resourcesNote: '有关更多详细信息，请访问我们的官方网站或联系支持团队。',
+        ctaTitle: '准备好让相机跟着你走了吗？',
+        ctaBody: '7 天全功能试用，之后 $9.99 一次买断。',
+        ctaButton: '获取 MOVTRAK',
+        toc: [
+          { id: 'contact', label: '联系渠道' },
+          { id: 'faq', label: '常见问题' },
+          { id: 'resources', label: '更多资源' },
+        ],
+      }
+    : {
+        titleSolid: 'SUPPORT',
+        titleOutline: 'DESK',
+        intro: "Need help with Movtrak? We're here to assist you.",
+        contactTitle: 'Contact & Support',
+        contactIntro: 'For any issues, bugs, or feature requests, please reach out to our team.',
+        channels: [
+          {
+            title: 'Email Support',
+            value: 'contactus@movtrak.app',
+            href: 'mailto:contactus@movtrak.app',
+            note: 'General inquiries, bug reports & collaborations',
+            external: false,
+          },
+          {
+            title: 'Xiaohongshu (RED)',
+            value: 'Movtrak (ID: 94148273564)',
+            href: 'https://xhslink.cn/o/5ZFvMll71iW',
+            note: 'Community updates, feedback & discussions',
+            external: true,
+          },
+        ],
+        faqTitle: 'Frequently Asked Questions',
+        faqs: [
+          {
+            q: 'App Compatibility',
+            a: 'Movtrak is designed for iOS devices and supports iPhone and iPad.',
+          },
+          {
+            q: 'Motion Tracking Accuracy',
+            a: 'Our AI algorithms are optimized for on-device processing to ensure the best performance without cloud connectivity.',
+          },
+          {
+            q: 'Privacy & Security',
+            a: 'Movtrak processes everything locally on your device and never uploads any personal data or video content.',
+          },
+        ],
+        resourcesTitle: 'Additional Resources',
+        privacy: 'Privacy Policy',
+        terms: 'Terms of Service',
+        resourcesNote: 'For more details, please visit our official website or contact our support team.',
+        ctaTitle: 'Ready to let the camera follow you?',
+        ctaBody: '7 days of full access, then a $9.99 one-time unlock.',
+        ctaButton: 'ACQUIRE MOVTRAK',
+        toc: [
+          { id: 'contact', label: 'Contact' },
+          { id: 'faq', label: 'FAQ' },
+          { id: 'resources', label: 'Resources' },
+        ],
+      }
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans">
-      {/* Navbar */}
-      <nav className="container mx-auto p-6 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-[#59E46E]">Movtrak</Link>
-        <div className="hidden md:flex space-x-6">
-          <Link to="/" className="hover:text-[#59E46E] transition">Home</Link>
-          <Link to="/support" className="hover:text-[#59E46E] transition">Support</Link>
+    <PageShell
+      system="// SUPPORT_DESK"
+      kicker="SYS // SUPPORT_CHANNEL"
+      titleSolid={copy.titleSolid}
+      titleOutline={copy.titleOutline}
+      intro={copy.intro}
+      meta={[
+        { label: 'DOC_ID', value: 'MVK-SUPPORT-01' },
+        { label: 'UPDATED', value: '2026.10.13' },
+        { label: 'CHANNEL', value: 'EMAIL · REDNOTE' },
+      ]}
+      toc={copy.toc}
+      railLabel="SUPPORT_CHANNEL_UNIT"
+      language={lang}
+      onLanguageChange={setLang}
+      active="support"
+    >
+      <section id="contact">
+        <SectionHead
+          index="01"
+          label="CONTACT_CHANNELS"
+          title={copy.contactTitle}
+          intro={copy.contactIntro}
+        />
+
+        <div className="mt-6 grid gap-px border hair bg-mint/25 md:grid-cols-2">
+          {copy.channels.map((channel, i) => (
+            <a
+              key={channel.title}
+              href={channel.href}
+              target={channel.external ? '_blank' : undefined}
+              rel={channel.external ? 'noopener noreferrer' : undefined}
+              className="group flex flex-col bg-slate-canvas p-6 transition-colors hover:bg-mint/5"
+            >
+              <div className="mono flex items-center justify-between text-[9px] text-cream/40">
+                <span>CHANNEL_0{i + 1}</span>
+                <span className="text-mint">● OPEN</span>
+              </div>
+              <h3 className="mt-8 font-display text-2xl leading-tight md:text-3xl">
+                {channel.title}
+              </h3>
+              <p className="mono mt-2 break-all text-[10px] text-mint">{channel.value}</p>
+              <p className="mt-4 text-sm leading-relaxed text-cream/60">{channel.note}</p>
+              <span className="mono mt-8 inline-flex items-center gap-2 text-[9px] text-coral">
+                OPEN_CHANNEL
+                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                  →
+                </span>
+              </span>
+            </a>
+          ))}
         </div>
-      </nav>
+      </section>
 
-      <main className="container mx-auto px-6 py-12 max-w-4xl">
-        {/* Chinese Version */}
-        <h1 className="text-4xl font-bold mb-8 text-[#59E46E]">支持 (Support - Chinese)</h1>
+      <section id="faq" className="mt-14">
+        <SectionHead index="02" label="FAQ_DATABASE" title={copy.faqTitle} />
 
-        <div className="space-y-8 text-gray-300 leading-relaxed">
-          <p className="text-lg">
-            最后更新日期：2025年11月26日
-          </p>
+        <div className="mt-6 grid gap-px border hair bg-mint/25 md:grid-cols-3">
+          {copy.faqs.map((faq, i) => (
+            <article key={faq.q} className="bg-slate-canvas p-5 md:p-6">
+              <p className="mono text-[9px] text-coral">Q_{String(i + 1).padStart(2, '0')}</p>
+              <h3 className="mt-4 font-display text-lg leading-snug">{faq.q}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-cream/60">{faq.a}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">获得帮助</h2>
-            <p>
-              需要 Movtrak 的帮助？我们在这里为您提供帮助。
-            </p>
-          </section>
+      <section id="resources" className="mt-14">
+        <SectionHead index="03" label="RESOURCES" title={copy.resourcesTitle} />
 
-          <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <h2 className="text-xl font-semibold mb-4 text-white">联系我们与反馈</h2>
-            <p className="mb-4 text-gray-300">
-              对于任何问题、错误报告或功能建议，欢迎通过以下渠道与我们联系。
-            </p>
-            <div className="grid md:grid-cols-2 gap-4 mt-4">
-              <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700/60 flex flex-col justify-between">
-                <div>
-                  <div className="text-sm font-semibold text-gray-300 mb-1">📮 官方邮箱</div>
-                  <a href="mailto:contactus@movtrak.app" className="text-[#59E46E] hover:underline font-mono text-sm break-all">
-                    contactus@movtrak.app
-                  </a>
-                </div>
-                <p className="text-xs text-gray-400 mt-3">详细问题咨询、商务合作与 Bug 反馈</p>
-              </div>
+        <div className="mt-6 grid gap-px border hair bg-mint/25 sm:grid-cols-2">
+          <Link
+            to="/privacy"
+            className="group flex items-center justify-between gap-4 bg-slate-canvas p-5 transition-colors hover:bg-mint/5"
+          >
+            <span>
+              <span className="mono text-[9px] text-cream/40">DOC_01</span>
+              <span className="mono mt-2 block text-[11px] text-cream/80 transition-colors group-hover:text-mint">
+                {copy.privacy}
+              </span>
+            </span>
+            <span className="text-mint" aria-hidden>
+              →
+            </span>
+          </Link>
 
-              <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700/60 flex flex-col justify-between">
-                <div>
-                  <div className="text-sm font-semibold text-gray-300 mb-1">📕 小红书官方主页</div>
-                  <a
-                    href="https://xhslink.cn/o/5ZFvMll71iW"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#59E46E] hover:underline font-medium text-sm inline-flex items-center gap-1"
-                  >
-                    <span>Movtrak (号: 94148273564)</span>
-                    <span className="text-xs">↗</span>
-                  </a>
-                </div>
-                <p className="text-xs text-gray-400 mt-3">关注主页、交流反馈与使用技巧分享</p>
-              </div>
-            </div>
-          </div>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">常见问题解答</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-bold text-white mb-2">应用程序兼容性</h3>
-                <p>Movtrak 专为 iOS 设备设计，支持 iPhone 和 iPad。</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-white mb-2">运动跟踪准确性</h3>
-                <p>我们的 AI 算法经过优化的设备上处理，确保最佳性能，而无需云连接。</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-white mb-2">隐私安全</h3>
-                <p>Movtrak 所有处理都在设备本地进行，不会上传任何个人数据或视频内容。</p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">更多资源</h2>
-            <div className="space-y-4">
-              <div>
-                <Link to="/privacy" className="text-[#59E46E] hover:underline">隐私政策</Link>
-                <span className="text-gray-500 mx-4">•</span>
-                <Link to="/terms" className="text-[#59E46E] hover:underline">服务条款</Link>
-              </div>
-              <p>有关更多详细信息，请访问我们的官方网站或联系支持团队。</p>
-            </div>
-          </section>
+          <Link
+            to="/terms"
+            className="group flex items-center justify-between gap-4 bg-slate-canvas p-5 transition-colors hover:bg-mint/5"
+          >
+            <span>
+              <span className="mono text-[9px] text-cream/40">DOC_02</span>
+              <span className="mono mt-2 block text-[11px] text-cream/80 transition-colors group-hover:text-mint">
+                {copy.terms}
+              </span>
+            </span>
+            <span className="text-mint" aria-hidden>
+              →
+            </span>
+          </Link>
         </div>
 
-        <hr className="my-16 border-gray-700" />
+        <p className="mt-4 text-sm leading-relaxed text-cream/50">{copy.resourcesNote}</p>
+      </section>
 
-        {/* English Version */}
-        <h1 className="text-4xl font-bold mb-8 text-[#59E46E]">Support</h1>
-
-        <div className="space-y-8 text-gray-300 leading-relaxed">
-          <p className="text-lg">
-            Last updated: November 26, 2025
-          </p>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">Get Help</h2>
-            <p>
-              Need help with Movtrak? We're here to assist you.
-            </p>
-          </section>
-
-          <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <h2 className="text-xl font-semibold mb-4 text-white">Contact & Support</h2>
-            <p className="mb-4 text-gray-300">
-              For any issues, bugs, or feature requests, please reach out to our team.
-            </p>
-            <div className="grid md:grid-cols-2 gap-4 mt-4">
-              <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700/60 flex flex-col justify-between">
-                <div>
-                  <div className="text-sm font-semibold text-gray-300 mb-1">📮 Email Support</div>
-                  <a href="mailto:contactus@movtrak.app" className="text-[#59E46E] hover:underline font-mono text-sm break-all">
-                    contactus@movtrak.app
-                  </a>
-                </div>
-                <p className="text-xs text-gray-400 mt-3">General inquiries, bug reports & collaborations</p>
-              </div>
-
-              <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700/60 flex flex-col justify-between">
-                <div>
-                  <div className="text-sm font-semibold text-gray-300 mb-1">📕 Xiaohongshu (RED)</div>
-                  <a
-                    href="https://xhslink.cn/o/5ZFvMll71iW"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#59E46E] hover:underline font-medium text-sm inline-flex items-center gap-1"
-                  >
-                    <span>Movtrak (ID: 94148273564)</span>
-                    <span className="text-xs">↗</span>
-                  </a>
-                </div>
-                <p className="text-xs text-gray-400 mt-3">Community updates, feedback & discussions</p>
-              </div>
-            </div>
-          </div>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-bold text-white mb-2">App Compatibility</h3>
-                <p>Movtrak is designed for iOS devices and supports iPhone and iPad.</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-white mb-2">Motion Tracking Accuracy</h3>
-                <p>Our AI algorithms are optimized for on-device processing to ensure the best performance without cloud connectivity.</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-white mb-2">Privacy & Security</h3>
-                <p>Movtrak processes everything locally on your device and never uploads any personal data or video content.</p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">Additional Resources</h2>
-            <div className="space-y-4">
-              <div>
-                <Link to="/privacy" className="text-[#59E46E] hover:underline">Privacy Policy</Link>
-                <span className="text-gray-500 mx-4">•</span>
-                <Link to="/terms" className="text-[#59E46E] hover:underline">Terms of Service</Link>
-              </div>
-              <p>For more details, please visit our official website or contact our support team.</p>
-            </div>
-          </section>
+      <div className="mt-14 border hair p-6 md:flex md:items-center md:justify-between md:gap-8 md:p-8">
+        <div>
+          <p className="mono text-[9px] text-cream/40">GET_MOVTRAK</p>
+          <p className="mt-3 font-display text-2xl leading-tight md:text-3xl">{copy.ctaTitle}</p>
+          <p className="mt-2 text-sm text-cream/60">{copy.ctaBody}</p>
         </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-black py-12 border-t border-gray-800 mt-12">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
-            <span className="text-2xl font-bold text-[#59E46E]">Movtrak</span>
-            <p className="text-gray-500 mt-2">© {new Date().getFullYear()} Movtrak. All rights reserved.</p>
-          </div>
-          <div className="flex space-x-6">
-            <Link to="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link>
-            <Link to="/terms" className="text-gray-400 hover:text-white">Terms of Service</Link>
-            <a href="mailto:contactus@movtrak.app" className="text-gray-400 hover:text-white">Contact</a>
-          </div>
-        </div>
-      </footer>
-    </div>
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-6 inline-flex items-center gap-8 border border-coral bg-coral px-6 py-4 mono text-[10px] text-slate-canvas transition-colors hover:bg-transparent hover:text-coral md:mt-0"
+        >
+          {copy.ctaButton}
+          <span className="text-base transition-transform group-hover:translate-x-1" aria-hidden>
+            →
+          </span>
+        </a>
+      </div>
+    </PageShell>
   )
 }

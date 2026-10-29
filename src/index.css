@@ -1,64 +1,176 @@
 @import "tailwindcss";
 
+@theme {
+  /* Pace & Pulse — voltage palette */
+  --color-slate-canvas: #2b2b3a;
+  --color-mint: #9debc6;
+  --color-coral: #ff7a85;
+  --color-lavender: #b7a6f0;
+  --color-cream: #fbf7f4;
+
+  --font-display: "Clash Grotesk", "Archivo", "Helvetica Neue", sans-serif;
+  --font-body: "General Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Azeret Mono", "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 3.5rem;
+  }
+
+  body {
+    background-color: var(--color-slate-canvas);
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-mint);
+    color: var(--color-slate-canvas);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
 @layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  /* Every border in the system is a mint hairline. */
+  .hair {
+    border-color: var(--color-mint);
   }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+
+  .mono {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+
+  .txt-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-cream);
+  }
+
+  .txt-outline-coral {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-coral);
+  }
+
+  .txt-outline-mint {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-mint);
+  }
+
+  .lav-glow {
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      rgba(183, 166, 240, 0.55),
+      rgba(183, 166, 240, 0) 70%
+    );
+  }
+
+  .mesh-drift {
+    background-image:
+      radial-gradient(40% 50% at 20% 30%, rgba(255, 122, 133, 0.22), transparent 70%),
+      radial-gradient(50% 60% at 80% 70%, rgba(183, 166, 240, 0.26), transparent 70%);
+    background-size: 140% 140%;
+    animation: meshdrift 18s ease-in-out infinite alternate;
+  }
+
+  .vel-bar {
+    background-image: linear-gradient(
+      to right,
+      var(--color-mint),
+      var(--color-lavender),
+      var(--color-coral)
+    );
+  }
+
+  .drain-line {
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(157, 235, 198, 0.55),
+      transparent
+    );
+    animation: drain 3.6s linear infinite;
+  }
+
+  .reveal-up {
+    animation: reveal-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
   }
 }
 
-/* Carousel slide animations - synchronized movement */
-@keyframes slide-left {
+@keyframes meshdrift {
+  0% {
+    background-position: 0% 0%, 100% 100%;
+  }
+  100% {
+    background-position: 100% 40%, 0% 60%;
+  }
+}
+
+@keyframes drain {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes reveal-up {
   from {
-    transform: translateX(0);
+    opacity: 0;
+    transform: translateY(60px);
   }
   to {
-    transform: translateX(-100%);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes slide-right {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }
 
-@keyframes enter-from-right {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes enter-from-left {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
+@media (max-width: 640px) {
+  .txt-outline,
+  .txt-outline-coral,
+  .txt-outline-mint {
+    -webkit-text-stroke-width: 1px;
   }
 }
 
-.animate-slide-left {
-  animation: slide-left 0.3s ease-in-out forwards;
+/* Complex CJK glyphs need a heavier stroke to stay legible when hollowed out. */
+.zh-mode .txt-outline,
+.zh-mode .txt-outline-coral,
+.zh-mode .txt-outline-mint {
+  -webkit-text-stroke-width: 2px;
 }
 
-.animate-slide-right {
-  animation: slide-right 0.3s ease-in-out forwards;
-}
-
-.animate-enter-from-right {
-  animation: enter-from-right 0.3s ease-in-out forwards;
-}
-
-.animate-enter-from-left {
-  animation: enter-from-left 0.3s ease-in-out forwards;
+@media (max-width: 640px) {
+  .zh-mode .txt-outline,
+  .zh-mode .txt-outline-coral,
+  .zh-mode .txt-outline-mint {
+    -webkit-text-stroke-width: 1.5px;
+  }
 }

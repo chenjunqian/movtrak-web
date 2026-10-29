@@ -1,350 +1,391 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import LanguageIcon from './components/LanguageIcon'
+import TerminalTopbar from './components/TerminalTopbar'
+import SubjectRail from './components/SubjectRail'
+import Waveform from './components/Waveform'
+import Barcode from './components/Barcode'
+import SectionTag from './components/SectionTag'
+import TerminalFooter from './components/TerminalFooter'
+import { APP_STORE_URL } from './constants'
+import { useCountUp, useScrollVelocityVar } from './hooks/useHud'
 
-// Carousel images data
-const screenshotImages = [
-  '/app-human-pose-detect-1.png',
-  '/app-human-body-track-1.png',
-  '/app-human-body-track-2.png',
-  '/app-human-pose-detect-2.png',
-  '/app-album.png',
-  '/app-video-editting.png'
-]
+interface StatCardProps {
+  label: string
+  target: number
+  note: string
+  prefix?: string
+  suffix?: string
+  decimals?: number
+}
+
+function StatCard({ label, target, note, prefix = '', suffix = '', decimals = 0 }: StatCardProps) {
+  const { ref, value } = useCountUp(target)
+  const shown = (value / 10 ** decimals).toFixed(decimals)
+
+  return (
+    <div className="relative overflow-hidden bg-slate-canvas p-5 md:p-6">
+      <div className="lav-glow pointer-events-none absolute -right-12 -top-12 h-36 w-36 opacity-40" aria-hidden />
+      <p className="mono text-[10px] text-cream/40">{label}</p>
+      <p className="mt-4 font-display text-4xl leading-none text-lavender md:text-5xl">
+        <span ref={ref} className="tabular-nums">
+          {prefix}
+          {shown}
+        </span>
+        {suffix ? <span className="ml-1 text-xl text-lavender/80">{suffix}</span> : null}
+      </p>
+      <p className="mt-3 text-xs leading-relaxed text-cream/60">{note}</p>
+    </div>
+  )
+}
 
 export default function LandingPage() {
   const { t, i18n } = useTranslation()
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isAutoRotating, setIsAutoRotating] = useState(true)
-  const [nextImageIndex, setNextImageIndex] = useState<number | null>(null)
-  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-
-  // Preload all images before enabling carousel
-  useEffect(() => {
-    let loadedCount = 0
-    const totalImages = screenshotImages.length
-
-    const preloadImage = (src: string): Promise<void> => {
-      return new Promise((resolve) => {
-        const img = new Image()
-        img.onload = () => {
-          loadedCount++
-          if (loadedCount === totalImages) {
-            setIsLoading(false)
-          }
-          resolve()
-        }
-        img.onerror = () => {
-          // Resolve anyway to not block loading
-          loadedCount++
-          if (loadedCount === totalImages) {
-            setIsLoading(false)
-          }
-          resolve()
-        }
-        img.src = src
-      })
-    }
-
-    const loadAllImages = async () => {
-      const promises = screenshotImages.map((src) => preloadImage(src))
-      await Promise.all(promises)
-    }
-
-    loadAllImages()
-  }, [])
-  // Auto-rotate carousel every 2 seconds (only when not manually stopped and loading is complete)
-  useEffect(() => {
-    if (!isAutoRotating || isLoading) return
-
-    const interval = setInterval(() => {
-      const nextIndex = (currentImageIndex + 1) % screenshotImages.length
-      setNextImageIndex(nextIndex)
-      setSlideDirection('left')
-      setTimeout(() => {
-        setCurrentImageIndex(nextIndex)
-        setNextImageIndex(null)
-        setSlideDirection(null)
-      }, 300)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [isAutoRotating, currentImageIndex, isLoading])
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng)
-  }
-
-  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    changeLanguage(event.target.value)
-  }
-
-  const goToNext = () => {
-    if (nextImageIndex !== null || isLoading) return // Animation in progress or still loading
-    setIsAutoRotating(false)
-    const nextIndex = (currentImageIndex + 1) % screenshotImages.length
-    setNextImageIndex(nextIndex)
-    setSlideDirection('left')
-    setTimeout(() => {
-      setCurrentImageIndex(nextIndex)
-      setNextImageIndex(null)
-      setSlideDirection(null)
-    }, 300)
-  }
-
-  const goToPrev = () => {
-    if (nextImageIndex !== null || isLoading) return // Animation in progress or still loading
-    setIsAutoRotating(false)
-    const prevIndex = (currentImageIndex - 1 + screenshotImages.length) % screenshotImages.length
-    setNextImageIndex(prevIndex)
-    setSlideDirection('right')
-    setTimeout(() => {
-      setCurrentImageIndex(prevIndex)
-      setNextImageIndex(null)
-      setSlideDirection(null)
-    }, 300)
-  }
-
-  const goToImage = (index: number) => {
-    if (nextImageIndex !== null || index === currentImageIndex || isLoading) return
-    setIsAutoRotating(false)
-    setNextImageIndex(index)
-    setSlideDirection(index > currentImageIndex ? 'left' : 'right')
-    setTimeout(() => {
-      setCurrentImageIndex(index)
-      setNextImageIndex(null)
-      setSlideDirection(null)
-    }, 300)
-  }
-
-  // The China mainland storefront does not list the app yet (ICP filing
-  // exception pending with Apple), so every CTA points at the US storefront.
-  const appStoreUrl = 'https://apps.apple.com/us/app/movtrak/id6755912677'
   const isZh = i18n.language.startsWith('zh')
+  useScrollVelocityVar()
+
+  useEffect(() => {
+    document.documentElement.lang = isZh ? 'zh-Hans' : 'en'
+  }, [isZh])
+
+  const heroType = isZh
+    ? 'text-[clamp(3rem,10vw,7.5rem)] leading-[0.98] tracking-[-0.01em]'
+    : 'text-[clamp(3.25rem,12vw,10.5rem)] leading-[0.82] tracking-[-0.02em]'
+
+  const sectionType = isZh
+    ? 'text-[clamp(2.5rem,7vw,5.5rem)] leading-[1.02] tracking-[-0.01em]'
+    : 'text-[clamp(2.75rem,8vw,7rem)] leading-[0.85] tracking-[-0.02em]'
+
+  const stats = [
+    {
+      label: t('telemetry.stat1Label'),
+      target: 100,
+      suffix: '%',
+      note: t('telemetry.stat1Note'),
+    },
+    {
+      label: t('telemetry.stat2Label'),
+      target: 0,
+      note: t('telemetry.stat2Note'),
+    },
+    {
+      label: t('telemetry.stat3Label'),
+      target: 7,
+      suffix: 'D',
+      note: t('telemetry.stat3Note'),
+    },
+    {
+      label: t('telemetry.stat4Label'),
+      target: 999,
+      prefix: '$',
+      decimals: 2,
+      note: t('telemetry.stat4Note'),
+    },
+  ]
+
+  const features = ['highlight1', 'highlight2', 'highlight3'] as const
+  const specRows = ['sensor', 'tracking', 'pipeline', 'privacy', 'output', 'hardware', 'trial', 'pricing'] as const
+  const steps = [1, 2, 3, 4, 5] as const
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans relative">
-      {/* Navbar */}
-      <nav className="container mx-auto p-6 flex justify-between items-center">
-        <div className="text-2xl font-bold text-[#59E46E]">Movtrak</div>
-        <div className="hidden md:flex items-center space-x-6">
-          <a href="#features" className="hover:text-[#59E46E] transition">{t('navbar.features')}</a>
-          <a href="#how-it-works" className="hover:text-[#59E46E] transition">{t('navbar.howItWorks')}</a>
-          <Link to="/support" className="hover:text-[#59E46E] transition">{t('navbar.support')}</Link>
-        </div>
-        <div className="flex items-center space-x-3">
-          <div className="relative flex items-center">
-            <LanguageIcon className="absolute left-3 text-gray-300 w-5 h-5 pointer-events-none" />
-            <select
-              value={i18n.language}
-              onChange={handleLanguageChange}
-              className="bg-gray-900 border border-gray-700 text-gray-300 pl-10 pr-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#59E46E] focus:border-transparent transition cursor-pointer appearance-none"
-            >
-              <option value="en">{t('languageSwitcher.english')}</option>
-              <option value="zh">{t('languageSwitcher.chinese')}</option>
-            </select>
-          </div>
-          <a
-            href={appStoreUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#59E46E] text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-[#4bd660] transition"
-          >
-            {t('navbar.download')}
-          </a>
-        </div>
-      </nav>
+    <div className={`min-h-screen bg-slate-canvas font-body text-cream ${isZh ? 'zh-mode' : ''}`}>
+      <TerminalTopbar />
 
-      {/* Hero Section */}
-      <header className="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 mb-12 md:mb-0">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-            {t('hero.titlePart1')} <span className="text-[#59E46E]">{t('hero.titlePart2')}</span> {t('hero.titlePart3')}
-          </h1>
-          <p className="text-xl text-gray-300 mb-8">
-            {t('hero.subtitle')}
-          </p>
-          <div className="flex flex-col items-start gap-3">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href={appStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#59E46E] text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-[#4bd660] transition shadow-lg shadow-green-500/20 text-center"
-              >
-                {t('hero.getForIOS')}
-              </a>
-            </div>
-            <p className="text-sm text-gray-400 flex items-center gap-2 pt-1">
-              <span className="inline-block w-2 h-2 rounded-full bg-[#59E46E]"></span>
-              {t('hero.pricingTag')}
-            </p>
-            {isZh && (
-              <p className="text-sm text-gray-400 leading-relaxed border-l-2 border-[#59E46E]/60 pl-3 pt-2 max-w-md">
-                {t('hero.regionNotice')}
-              </p>
-            )}
-          </div>
-        </div>
-        {/* App Screenshot - Carousel */}
-        <div className="md:w-1/2 flex justify-center">
-          <div className="relative w-68 h-[580px] border-4 border-gray-700 bg-gray-800 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
-            {/* Previous button */}
-            <button
-              onClick={goToPrev}
-              disabled={nextImageIndex !== null || isLoading}
-              className={`absolute left-2 z-10 p-2 rounded-full bg-black/50 text-white transition cursor-pointer disabled:opacity-50 ${!isLoading ? 'hover:bg-[#59E46E] hover:text-gray-900' : ''}`}
-              aria-label="Previous image"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {/* Image display with slide animation */}
-            <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
-              {/* Current image */}
-              <img
-                src={screenshotImages[currentImageIndex]}
-                alt={`Screenshot ${currentImageIndex + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover ${
-                  slideDirection === 'left'
-                    ? 'animate-slide-left'
-                    : slideDirection === 'right'
-                    ? 'animate-slide-right'
-                    : ''
-                }`}
+      <main>
+        {/* ── HERO ─────────────────────────────────────────────── */}
+        <section id="top" className="relative overflow-hidden border-b hair">
+          <div className="mesh-drift pointer-events-none absolute inset-0 opacity-80" aria-hidden />
+          <div className="pointer-events-none absolute inset-0" aria-hidden>
+            {[16, 47, 82].map((left, i) => (
+              <span
+                key={left}
+                className="drain-line absolute top-0 h-40 w-px"
+                style={{ left: `${left}%`, animationDelay: `${i * 1.4}s` }}
               />
-              {/* Next image (visible during animation) */}
-              {nextImageIndex !== null && (
-                <img
-                  src={screenshotImages[nextImageIndex]}
-                  alt={`Screenshot ${nextImageIndex + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover ${
-                    slideDirection === 'left'
-                      ? 'animate-enter-from-right'
-                      : slideDirection === 'right'
-                      ? 'animate-enter-from-left'
-                      : ''
-                  }`}
-                />
+            ))}
+          </div>
+
+          <div className="relative mx-auto grid max-w-[1600px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,30%)]">
+            <div className="px-4 py-10 sm:px-6 md:px-12 lg:py-14 lg:pr-10 xl:py-16">
+              <div
+                className="reveal-up mono space-y-1.5 text-[10px] text-cream/50 md:text-[11px]"
+                style={{ animationDelay: '0.05s' }}
+              >
+                <p className="text-mint">{t('hero.boot1')}</p>
+                <p>{t('hero.boot2')}</p>
+                <p>
+                  {t('hero.boot3')} <span className="animate-blink text-coral">█</span>
+                </p>
+              </div>
+
+              <h1
+                className={`reveal-up mt-7 font-display font-semibold uppercase ${heroType}`}
+                style={{ animationDelay: '0.15s' }}
+              >
+                <span className="block">{t('hero.line1')}</span>
+                <span className="txt-outline block">{t('hero.line2')}</span>
+                <span className="block text-mint">{t('hero.line3')}</span>
+              </h1>
+
+              <p
+                className="reveal-up mt-6 max-w-xl text-[15px] leading-relaxed text-cream/70 md:text-base"
+                style={{ animationDelay: '0.3s' }}
+              >
+                {t('hero.subtitle')}
+              </p>
+
+              <div
+                className="reveal-up mt-8 flex flex-col gap-3 sm:flex-row"
+                style={{ animationDelay: '0.42s' }}
+              >
+                <a
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-between gap-8 border border-mint bg-mint px-5 py-4 mono text-[10px] text-slate-canvas transition-colors hover:bg-transparent hover:text-mint focus:outline-none focus-visible:ring-1 focus-visible:ring-mint md:px-6 md:text-[11px]"
+                >
+                  <span>{t('hero.primaryCta')}</span>
+                  <span className="text-base transition-transform group-hover:translate-x-1" aria-hidden>
+                    →
+                  </span>
+                </a>
+                <a
+                  href="#sensors"
+                  className="group inline-flex items-center justify-between gap-8 border border-mint/40 px-5 py-4 mono text-[10px] text-cream/75 transition-colors hover:border-mint hover:text-mint md:px-6 md:text-[11px]"
+                >
+                  <span>{t('hero.secondaryCta')}</span>
+                  <span className="text-base transition-transform group-hover:translate-y-0.5" aria-hidden>
+                    ↓
+                  </span>
+                </a>
+              </div>
+
+              <p
+                className="reveal-up mt-4 mono text-[9px] leading-relaxed text-cream/45 md:text-[10px]"
+                style={{ animationDelay: '0.5s' }}
+              >
+                {t('hero.pricingTag')}
+              </p>
+
+              {isZh && (
+                <p className="mt-5 max-w-xl border-l border-coral/60 pl-3 font-mono text-[11px] leading-relaxed tracking-normal text-cream/50">
+                  {t('hero.regionNotice')}
+                </p>
               )}
+
+              <dl
+                className="reveal-up mt-10 grid grid-cols-3 gap-px border hair bg-mint/25"
+                style={{ animationDelay: '0.58s' }}
+              >
+                {[1, 2, 3].map((n) => (
+                  <div key={n} className="bg-slate-canvas px-3 py-4 md:px-5">
+                    <dt className="mono text-[9px] text-cream/40 md:text-[10px]">
+                      {t(`hero.spec${n}Label`)}
+                    </dt>
+                    <dd className="mt-2 mono text-[10px] text-mint md:text-[11px]">
+                      {t(`hero.spec${n}Value`)}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </div>
 
-            {/* Next button */}
-            <button
-              onClick={goToNext}
-              disabled={nextImageIndex !== null || isLoading}
-              className={`absolute right-2 z-10 p-2 rounded-full bg-black/50 text-white transition cursor-pointer disabled:opacity-50 ${!isLoading ? 'hover:bg-[#59E46E] hover:text-gray-900' : ''}`}
-              aria-label="Next image"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+            <div className="relative border-t hair lg:sticky lg:top-12 lg:h-[calc(100vh-3rem)] lg:border-l lg:border-t-0">
+              <SubjectRail />
+            </div>
+          </div>
+        </section>
 
-            {/* Image indicator */}
-            <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 ${isLoading ? 'opacity-0' : ''}`}>
-              {screenshotImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToImage(index)}
-                  disabled={nextImageIndex !== null || isLoading}
-                  className={`w-2 h-2 rounded-full transition cursor-pointer disabled:opacity-50 ${
-                    index === currentImageIndex ? 'bg-[#59E46E]' : 'bg-gray-500 hover:bg-gray-400'
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
+        <Waveform />
+
+        {/* ── SENSORS / TELEMETRY ──────────────────────────────── */}
+        <section id="sensors" className="border-b hair">
+          <div className="mx-auto max-w-[1600px] px-4 py-14 sm:px-6 md:px-12 md:py-20">
+            <SectionTag>{t('telemetry.section')}</SectionTag>
+
+            <div className="mt-9 grid gap-8 lg:grid-cols-[1.25fr_1fr] lg:items-end">
+              <h2 className={`font-display font-semibold uppercase ${sectionType}`}>
+                <span className="block">{t('telemetry.title1')}</span>
+                <span className="txt-outline block">{t('telemetry.title2')}</span>
+                <span className="block text-coral">{t('telemetry.title3')}</span>
+              </h2>
+
+              <div>
+                <p className="max-w-md text-sm leading-relaxed text-cream/70 md:text-base">
+                  {t('telemetry.intro')}
+                </p>
+                <div className="mt-6">
+                  <div className="mono flex items-center justify-between gap-4 text-[9px] text-cream/40 md:text-[10px]">
+                    <span>{t('telemetry.meterLabel')}</span>
+                    <span className="text-coral">{t('telemetry.meterHint')}</span>
+                  </div>
+                  <div className="mt-2 h-[3px] w-full bg-cream/10">
+                    <div
+                      className="vel-bar h-full"
+                      style={{ width: 'calc(5% + var(--vel, 0) * 95%)' }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-px border hair bg-mint/25 sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map((stat) => (
+                <StatCard key={stat.label} {...stat} />
+              ))}
+            </div>
+
+            <div className="mono mt-10 flex items-center gap-3 text-[10px] text-cream/40">
+              <span>{t('telemetry.modulesLabel')}</span>
+              <span className="h-px flex-1 bg-mint/25" aria-hidden />
+              <span className="text-mint/60">///</span>
+            </div>
+
+            <div className="mt-4 grid gap-px border hair bg-mint/25 lg:grid-cols-3">
+              {features.map((key, i) => (
+                <article key={key} className="group bg-slate-canvas p-6 md:p-8">
+                  <div className="mono flex items-center justify-between text-[10px] text-cream/40">
+                    <span>MOD_0{i + 1}</span>
+                    <span className="text-mint" aria-hidden>
+                      ●
+                    </span>
+                  </div>
+                  <h3 className="mt-8 font-display text-xl leading-snug tracking-tight md:text-2xl">
+                    {t(`features.${key}.title`)}
+                  </h3>
+                  <p className="mt-4 text-sm font-medium text-mint/90">
+                    {t(`features.${key}.coreValue`)}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-cream/60">
+                    {t(`features.${key}.description`)}
+                  </p>
+                  <div className="mt-8 h-px w-full bg-mint/20" aria-hidden>
+                    <div className="h-px w-0 bg-mint transition-all duration-500 group-hover:w-full" />
+                  </div>
+                </article>
               ))}
             </div>
           </div>
-        </div>
-      </header>
+        </section>
 
-      {/* Core Highlight Module Section */}
-      <section id="features" className="bg-gray-800 py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            {t('features.title')} <span className="text-[#59E46E]">{t('features.titleBrand')}</span>
-          </h2>
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Highlight 1 */}
-            <div className="bg-gray-900 p-8 rounded-2xl hover:transform hover:-translate-y-2 transition duration-300">
-              <div className="text-4xl mb-6">🌐</div>
-              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.highlight1.title')}</h3>
-              <p className="text-lg text-gray-300 mb-3">
-                {t('features.highlight1.coreValue')}
-              </p>
-              <p className="text-gray-400">
-                {t('features.highlight1.description')}
-              </p>
-            </div>
-            {/* Highlight 2 */}
-            <div className="bg-gray-900 p-8 rounded-2xl hover:transform hover:-translate-y-2 transition duration-300">
-              <div className="text-4xl mb-6">🧠</div>
-              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.highlight2.title')}</h3>
-              <p className="text-lg text-gray-300 mb-3">
-                {t('features.highlight2.coreValue')}
-              </p>
-              <p className="text-gray-400">
-                {t('features.highlight2.description')}
-              </p>
-            </div>
-            {/* Highlight 3 */}
-            <div className="bg-gray-900 p-8 rounded-2xl hover:transform hover:-translate-y-2 transition duration-300">
-              <div className="text-4xl mb-6">💰</div>
-              <h3 className="text-xl font-bold mb-4 text-[#59E46E]">{t('features.highlight3.title')}</h3>
-              <p className="text-lg text-gray-300 mb-3">
-                {t('features.highlight3.coreValue')}
-              </p>
-              <p className="text-gray-400">
-                {t('features.highlight3.description')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        {/* ── PROTOCOL / SPEC + STEPS ──────────────────────────── */}
+        <section id="protocol" className="border-b hair">
+          <div className="mx-auto max-w-[1600px] px-4 py-14 sm:px-6 md:px-12 md:py-20">
+            <SectionTag>{t('howItWorks.section')}</SectionTag>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">{t('howItWorks.title')}</h2>
-        <div className="max-w-4xl mx-auto">
-          {[
-            { step: 1, title: t('howItWorks.step1'), desc: t('howItWorks.step1Desc') },
-            { step: 2, title: t('howItWorks.step2'), desc: t('howItWorks.step2Desc') },
-            { step: 3, title: t('howItWorks.step3'), desc: t('howItWorks.step3Desc') },
-            { step: 4, title: t('howItWorks.step4'), desc: t('howItWorks.step4Desc') },
-            { step: 5, title: t('howItWorks.step5'), desc: t('howItWorks.step5Desc') }
-          ].map((item) => (
-            <div key={item.step} className="flex mb-8 items-start">
-              <div className="shrink-0 w-12 h-12 bg-[#59E46E] rounded-full flex items-center justify-center text-gray-900 font-bold text-xl mr-6">
-                {item.step}
-              </div>
+            <div className="mt-9 grid gap-10 lg:grid-cols-2 lg:gap-14">
               <div>
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-gray-400">{item.desc}</p>
+                <h2 className={`font-display font-semibold uppercase ${sectionType}`}>
+                  <span className="block">{t('howItWorks.title1')}</span>
+                  <span className="txt-outline block">{t('howItWorks.title2')}</span>
+                </h2>
+                <p className="mt-6 max-w-md text-sm leading-relaxed text-cream/70">
+                  {t('howItWorks.intro')}
+                </p>
+
+                <div className="mt-8 border hair">
+                  <div className="mono flex items-center justify-between border-b hair px-4 py-3 text-[9px] text-cream/40">
+                    <span>{t('howItWorks.tableLabel')}</span>
+                    <span>VALUE</span>
+                  </div>
+                  <dl>
+                    {specRows.map((key) => (
+                      <div
+                        key={key}
+                        className="grid grid-cols-[auto_1fr] items-start gap-4 border-b hair px-4 py-3.5 transition-colors last:border-b-0 hover:bg-mint/5 md:py-4"
+                      >
+                        <dt className="mono text-[9px] leading-5 text-cream/40 md:text-[10px]">
+                          {t(`spec.${key}.label`)}
+                        </dt>
+                        <dd className="mono text-right text-[10px] leading-5 text-mint md:text-[11px]">
+                          {t(`spec.${key}.value`)}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+
+              <ol className="grid gap-px self-start border hair bg-mint/25 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                {steps.map((step, i) => (
+                  <li
+                    key={step}
+                    className={`bg-slate-canvas p-5 md:p-6 ${
+                      i === steps.length - 1 ? 'sm:col-span-2 lg:col-span-1 xl:col-span-2' : ''
+                    }`}
+                  >
+                    <div className="mono flex items-center justify-between text-[9px] text-cream/40">
+                      <span>STEP</span>
+                      <span className="text-coral">[{String(step).padStart(2, '0')}]</span>
+                    </div>
+                    <h3 className="mt-4 font-display text-lg leading-snug tracking-tight md:text-xl">
+                      {t(`howItWorks.step${step}`)}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-cream/60">
+                      {t(`howItWorks.step${step}Desc`)}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        {/* ── ACQUIRE / END TRACK ──────────────────────────────── */}
+        <section id="acquire" className="relative overflow-hidden border-b hair">
+          <div
+            className="lav-glow pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 opacity-40"
+            aria-hidden
+          />
+          <div className="relative mx-auto max-w-[1600px] px-4 py-16 text-center sm:px-6 md:px-12 md:py-24">
+            <SectionTag>{t('cta.section')}</SectionTag>
+
+            <h2 className="mt-10 font-display text-[clamp(3.5rem,13vw,11rem)] font-semibold uppercase leading-[0.82] tracking-[-0.02em]">
+              <span className="block">{t('cta.title1')}</span>
+              <span className="txt-outline-coral block">{t('cta.title2')}</span>
+            </h2>
+
+            <p className="mx-auto mt-8 max-w-lg text-sm leading-relaxed text-cream/70 md:text-base">
+              {t('cta.body')}
+            </p>
+
+            <div className="mt-8 flex flex-col items-center gap-4">
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-8 border border-coral bg-coral px-7 py-4 mono text-[10px] text-slate-canvas transition-colors hover:bg-transparent hover:text-coral focus:outline-none focus-visible:ring-1 focus-visible:ring-coral md:px-10 md:text-[11px]"
+              >
+                <span>{t('cta.button')}</span>
+                <span className="text-base transition-transform group-hover:translate-x-1" aria-hidden>
+                  →
+                </span>
+              </a>
+              <p className="mono text-[10px] text-cream/45 md:text-[11px]">
+                <span className="text-mint">{t('cta.price')}</span>
+                <span className="mx-2 text-cream/25">/</span>
+                {t('cta.note')}
+              </p>
+              {isZh && (
+                <p className="mx-auto max-w-lg font-mono text-[11px] leading-relaxed tracking-normal text-cream/50">
+                  {t('hero.regionNotice')}
+                </p>
+              )}
+            </div>
+
+            <div className="mt-16">
+              <Barcode />
+              <div className="mono mt-3 flex flex-col items-center justify-between gap-2 text-[9px] text-cream/40 sm:flex-row">
+                <span>{t('cta.barcode')}</span>
+                <span>
+                  {t('cta.idLabel')} 6755912677
+                </span>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-black py-12 border-t border-gray-800">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
-            <span className="text-2xl font-bold text-[#59E46E]">Movtrak</span>
-            <p className="text-gray-500 mt-2">{t('footer.copyright', { year: new Date().getFullYear() })}</p>
           </div>
-          <div className="flex space-x-6">
-            <Link to="/privacy" className="text-gray-400 hover:text-white">{t('footer.privacyPolicy')}</Link>
-            <Link to="/terms" className="text-gray-400 hover:text-white">{t('footer.termsOfService')}</Link>
-            <a href="mailto:contactus@movtrak.app" className="text-gray-400 hover:text-white">{t('footer.contact')}</a>
-          </div>
-        </div>
-      </footer>
+        </section>
+      </main>
 
+      <TerminalFooter />
     </div>
   )
 }
